@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 Route::get('ts_login', 'LoginController@getLogin')->name('getLogin');
 Route::post('ts_login', 'LoginController@postLogin')->name('postLogin');
+
+Route::get('admin',function(){
+	return view('admin.blocks.thongke');
+})->name('admin');

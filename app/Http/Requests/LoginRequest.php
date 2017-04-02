@@ -29,7 +29,7 @@ class LoginRequest extends FormRequest
         ];
     }
 
-    public function message(){
+    public function messages(){
         return [
             'username.required'     =>  'Bạn chưa nhập tên đăng nhập',
             'password.required'     =>  'Bạn chưa nhập mật khẩu'

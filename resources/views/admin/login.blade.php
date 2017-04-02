@@ -36,6 +36,14 @@
                         <h3 class="panel-title">Đăng Nhập</h3>
                     </div>
                     <div class="panel-body">
+                    <div class="">
+                        @if (Session::has('flash_message'))
+                            <div class="alert alert-{!! Session::get('flash_level') !!}">
+                                {!! Session::get('flash_message') !!}
+                            </div>
+                        @endif
+                    </div>
+                    @include('admin.blocks.error')
                         <form role="form" action="" method="POST">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <fieldset>
@@ -69,6 +77,12 @@
     <!-- DataTables JavaScript -->
     <script src="{!! asset('public/ts_admin/bower_components/DataTables/media/js/jquery.dataTables.min.js') !!}"></script>
     <script src="{!! asset('public/ts_admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') !!}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('div.alert').delay(3000).slideUp();
+        });
+    </script>
 
 </body>
 
