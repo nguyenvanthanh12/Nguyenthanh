@@ -1,4 +1,7 @@
-
+@extends('admin.master')
+@section('controller','Loại sản phẩm')
+@section('action','Thêm')
+@section('content')
 <!-- /.col-lg-12 -->
 <div class="col-lg-7" style="padding-bottom:120px">
     <form action="" method="POST">
@@ -38,4 +41,4 @@
         <button type="reset" class="btn btn-default">Reset</button>
     <form>
 </div>
-                
+@endsection

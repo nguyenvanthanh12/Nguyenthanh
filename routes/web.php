@@ -20,9 +20,14 @@ Route::get('logout', 'LoginController@getLogout')->name('getLogout');
 
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::group(['prefix' => 'admin'], function(){
+    Route::group(['prefix' => 'thql_admin', 'namespace' => 'Admin'], function(){
     	Route::get('/',function(){
     		return view('admin.blocks.thongke');
+    	});
+    	Route::group(['prefix' => 'loaisanpham'],function(){
+    		Route::get('them', 'CateController@getCateAdd')->name('getCateAdd');
+    		Route::post('them', 'CateController@postCateAdd')->name('postCateAdd');
+    		route::get('danhsach', 'CateController@getCateList')->name('getCateList');
     	});
     });
 });

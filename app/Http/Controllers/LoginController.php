@@ -12,7 +12,7 @@ class LoginController extends Controller
     		return view('admin.login');	
     	}
     	else{
-    		return redirect('admin');
+    		return redirect('thql_admin');
     	}
     }
 
@@ -24,9 +24,9 @@ class LoginController extends Controller
     	];
     	if (Auth::attempt($login)) {
             // Authentication passed...
-            return redirect('admin');
+            return redirect('thql_admin');
         }else{
-        	return redirect()->route('getLogin')->with(['flash_level' => 'danger', 'flash_message' => 'Tài khoản hoặc mật khẩu không trùng khớp']);
+        	return redirect()->route('getLogin')->with(['flash_level' => 'danger', 'flash_message' => 'Tài khoản hoặc mật khẩu không chính xác']);
         }
     }
 
