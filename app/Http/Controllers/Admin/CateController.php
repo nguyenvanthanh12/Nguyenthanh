@@ -41,10 +41,22 @@ class CateController extends Controller
     }
 
     public function getCateEdit($id){
-    	return view('admin.modules.loaisanpham.edit');
+    	$data = Cate::findOrFail($id)->toArray();
+    	$parent= Cate::select('id','Ten','parent_id')->get()->toArray();
+    	return view('admin.modules.loaisanpham.edit',['data' => $data,'parent' => $parent]);
     }
 
-    public function postCateEdit($id){
-
+    public function postCateEdit(Request $Request,$id){
+    	$this->validate($Request,
+    		['txtCateName' => 'required'],
+    		['txtCateName.required' => 'Bạn cần nhập tên danh mục !']
+    	);
+    	$cate = Cate::find($id);
+    	$cate->Ten = $Request->txtCateName;
+    	$cate->TenKhongDau = str_slug($cate->Ten,'-');
+    	$cate->parent_id = $Request->parentID;
+    	$cate->updated_at = new dateTime();
+    	$cate->save();
+    	return redirect()->route('getCateList')->with(['flash_level' => 'success', 'flash_message' => 'Sửa danh mục thành công !']);
     }
 }
