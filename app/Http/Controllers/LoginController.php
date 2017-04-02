@@ -24,9 +24,14 @@ class LoginController extends Controller
     	];
     	if (Auth::attempt($login)) {
             // Authentication passed...
-            return redirect()->route('admin');
+            return redirect('admin');
         }else{
         	return redirect()->route('getLogin')->with(['flash_level' => 'danger', 'flash_message' => 'Tài khoản hoặc mật khẩu không trùng khớp']);
         }
+    }
+
+    public function getLogout(){
+    	Auth::logout();
+    	return redirect()->route('getLogin');
     }
 }

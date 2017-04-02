@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'ts_users',
     ],
 
     /*
@@ -38,12 +38,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'ts_users',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'ts_users',
         ],
     ],
 
@@ -65,14 +65,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'ts_users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
+        // 'ts_users' => [
         //     'driver' => 'database',
-        //     'table' => 'users',
+        //     'table' => 'ts_users',
         // ],
     ],
 
@@ -92,8 +92,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'ts_users' => [
+            'provider' => 'ts_users',
             'table' => 'password_resets',
             'expire' => 60,
         ],

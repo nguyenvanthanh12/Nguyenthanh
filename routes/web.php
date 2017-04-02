@@ -16,7 +16,13 @@ Route::get('/', function () {
 });
 Route::get('ts_login', 'LoginController@getLogin')->name('getLogin');
 Route::post('ts_login', 'LoginController@postLogin')->name('postLogin');
+Route::get('logout', 'LoginController@getLogout')->name('getLogout');
 
-Route::get('admin',function(){
-	return view('admin.blocks.thongke');
-})->name('admin');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'admin'], function(){
+    	Route::get('/',function(){
+    		return view('admin.blocks.thongke');
+    	});
+    });
+});
