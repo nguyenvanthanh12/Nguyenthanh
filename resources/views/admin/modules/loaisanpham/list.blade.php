@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('controller','Loại sản phẩm')
-@section('action','sửa')
+@section('action','Danh sách')
 @section('content')                    <!-- /.col-lg-12 -->
 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
     <thead>
@@ -31,8 +31,8 @@
             @endif
             </td>
             <td><?php echo $val['created_at'] ?></td>
-            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
+            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{!! route('getCateDelete',$val['id']) !!}" onclick="return confirm('Bạn có chắc muốn xóa danh mục này ?')" > Xóa</a></td>
+            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{!! route('getCateEdit',$val['id']) !!}">Sửa</a></td>
         </tr>
         @endforeach
     </tbody>

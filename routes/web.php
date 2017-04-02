@@ -28,6 +28,9 @@ Route::group(['middleware' => 'auth'], function () {
     		Route::get('them', 'CateController@getCateAdd')->name('getCateAdd');
     		Route::post('them', 'CateController@postCateAdd')->name('postCateAdd');
     		route::get('danhsach', 'CateController@getCateList')->name('getCateList');
+    		Route::get('xoa/{id}', 'CateController@getCateDelete')->name('getCateDelete')->where('id', '[0-9]+');
+    		route::get('sua/{id}', 'CateController@getCateEdit')->name('getCateEdit')->where('id', '[0-9]+');
+    		Route::post('sua/{id}', 'CateController@postCateEdit')->name('postCateEdit')->where('id', '[0-9]+');
     	});
     });
 });

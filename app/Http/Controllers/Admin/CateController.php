@@ -28,4 +28,23 @@ class CateController extends Controller
         $Cate->save();
         return redirect()->route('getCateList')->with(['flash_level' => 'success', 'flash_message' => 'Thêm danh mục thành công !']);
     }
+
+    public function getCateDelete($id){
+    	$parent = Cate::where('parent_id',$id)->count();
+    	if($parent == 0){
+    	    $cate = Cate::find($id);
+    	    $cate->delete($id);
+    	    return redirect()->route('getCateList')->with(['flash_level' => 'success','flash_message' => 'Xóa danh mục thành công!']);
+    	}else{
+    	    return redirect()->route('getCateList')->with(['flash_level' => 'danger','flash_message' => 'Xin lỗi ! Bạn cần xóa danh mục con trước!']);
+    	}
+    }
+
+    public function getCateEdit($id){
+    	return view('admin.modules.loaisanpham.edit');
+    }
+
+    public function postCateEdit($id){
+
+    }
 }
