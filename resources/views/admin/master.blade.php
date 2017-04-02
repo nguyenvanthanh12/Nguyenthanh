@@ -78,7 +78,13 @@
                             <small>@yield('action')</small>
                         </h1>
                     </div>
-
+            <div class="col-lg-12">
+                @if (Session::has('flash_message'))
+                    <div class="alert alert-{!! Session::get('flash_level') !!}">
+                        {!! Session::get('flash_message') !!}
+                    </div>
+                @endif
+            </div>
 <!-- Nội dung chích -->
 
         @yield('content')
@@ -116,6 +122,7 @@
         $('#dataTables-example').DataTable({
                 responsive: true
         });
+        $('div.alert').delay(3000).slideUp();
     });
     </script>
 </body>
