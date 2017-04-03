@@ -25,6 +25,10 @@
 
     <!-- DataTables Responsive CSS -->
     <link href="{!! asset('public/ts_admin/bower_components/datatables-responsive/css/dataTables.responsive.css') !!}" rel="stylesheet">
+
+    <!-- Nhúng trình soạn thảo -->
+    <script type="text/javascript" src="{!! asset('public/ts_admin/js/ckeditor/ckeditor.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('public/ts_admin/js/ckfinder/ckfinder.js') !!}"></script>
 </head>
 <body>
 

@@ -4,45 +4,62 @@
 @section('content')
 <!-- /.col-lg-12 -->
 <div class="col-lg-7" style="padding-bottom:120px">
+    @include('admin.blocks.error')
     <form action="" method="POST">
+    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
         <div class="form-group">
-            <label>Name</label>
-            <input class="form-control" name="txtName" placeholder="Please Enter Username" />
+            <label>Chương trình khuyến mãi:</label>
+            <select name="idKM" class="form-control">
+                <option value="">--Chọn--</option>
+            </select>
         </div>
         <div class="form-group">
-            <label>Price</label>
-            <input class="form-control" name="txtPrice" placeholder="Please Enter Password" />
+            <label>Thư mục cha:</label>
+            <select name="idLSP" class="form-control">
+                <option value="">--Chọn--</option>
+            </select>
         </div>
         <div class="form-group">
-            <label>Intro</label>
-            <textarea class="form-control" rows="3" name="txtIntro"></textarea>
+            <label>MaSP:</label>
+            <input class="form-control" name="MaSP" value="{{ old('MaSP') }}" />
         </div>
         <div class="form-group">
-            <label>Content</label>
-            <textarea class="form-control" rows="3" name="txtContent"></textarea>
+            <label>Tên sản phẩm:</label>
+            <input class="form-control" name="TenSP" value="{!! old('TenSP') !!}" />
+        </div>
+        <div class="form-group">
+            <label>Giá:</label>
+            <input type="text" name="Gia" class="form-control" value="{!! old('Gia') !!}">
         </div>
         <div class="form-group">
             <label>Images</label>
             <input type="file" name="fImages">
         </div>
         <div class="form-group">
-            <label>Product Keywords</label>
-            <input class="form-control" name="txtOrder" placeholder="Please Enter Category Keywords" />
+            <label>Tóm Tắt:</label>
+            <textarea class="form-control" rows="3" id="TomTat" name="TomTat">{!! old('TomTat') !!}</textarea>
+            <script type="text/javascript">CKEDITOR.replace('TomTat');</script>
         </div>
         <div class="form-group">
-            <label>Product Description</label>
-            <textarea class="form-control" rows="3"></textarea>
+            <label>Nội dung:</label>
+            <textarea class="form-control" rows="3" id="NoiDung" name="NoiDung">{!! old('NoiDung') !!}</textarea>
+            <script type="text/javascript">CKEDITOR.replace('NoiDung');</script>
         </div>
         <div class="form-group">
-            <label>Product Status</label>
+            <label>Bảo hành</label>
+            <input class="form-control" name="BaoHanh" value="{!! old('BaoHanh') !!}" />
+        </div>
+        
+        <div class="form-group">
+            <label>Trạng thái:</label>
             <label class="radio-inline">
-                <input name="rdoStatus" value="1" checked="" type="radio">Visible
+                <input name="rdoStatus" value="1" checked="" type="radio">Cón hàng
             </label>
             <label class="radio-inline">
-                <input name="rdoStatus" value="2" type="radio">Invisible
+                <input name="rdoStatus" value="0" type="radio">Hết hàng
             </label>
         </div>
-        <button type="submit" class="btn btn-default">Product Add</button>
+        <button type="submit" class="btn btn-default">Thêm</button>
         <button type="reset" class="btn btn-default">Reset</button>
     <form>
 </div>

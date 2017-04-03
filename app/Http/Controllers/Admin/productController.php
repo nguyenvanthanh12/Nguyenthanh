@@ -16,7 +16,7 @@ class productController extends Controller
     	return view('admin.modules.sanpham.add');
     }
 
-    public function postProductAdd(){
+    public function postProductAdd(productRequest $Request){
     	
     }
 }

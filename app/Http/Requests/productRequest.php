@@ -13,7 +13,7 @@ class productRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,26 @@ class productRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'MaSP'          =>   'required|unique:ts_sanpham,MaSP',
+            'idLSP'         =>   'required',
+            'TenSP'         =>   'required',
+            'Gia'           =>   'required',
+            'fImages'       =>   'required',
+            'TomTat'        =>   'required',
+            'NoiDung'       =>   'required'
+        ];
+    }
+    public function messages(){
+        return [
+            'MaSP.required'         =>   'Bạn chưa nhập mã sản phẩm !',
+            'MaSP.unique'           =>   'Mã sản phẩm đã tồn tại !',
+            'idLSP.required'        =>   'Bạn phải chọn thư mục cha cho sản phẩm !',
+            'TenSP.required'        =>   'Bạn chưa nhập tên sản phẩm !',
+            'Gia.required'          =>   'Bạn chưa nhập giá sản phẩm !',
+            'fImages.required'      =>   'Bạn chưa tải ảnh đại diện cho sản phẩm !',
+
+            'TomTat.required'       =>   'Bạn chưa nhập tóm tắt cho sản phẩm !',
+            'NoiDung.required'      =>   'Bạn chưa nhập mô tả cho sản phẩm !'
         ];
     }
 }
