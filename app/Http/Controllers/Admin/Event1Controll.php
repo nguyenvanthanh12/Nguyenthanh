@@ -69,7 +69,7 @@ class Event1Controll extends Controller
     	 $event->HinhThuc 	=	$Request->HinhThuc;
     	 $event->Anh 		=	$file_name;
     	 if(strlen($file_name) >0) {
-    	 	$fImageCurrent = $Request->fImageCurrent;
+    	 	$fImageCurrent 	= $Request->fImageCurrent;
     	 	if(file_exists(public_path().'/upload/khuyenmai/'.$fImageCurrent)){
     	 		File::delete(public_path().'/upload/khuyenmai/'.$fImageCurrent);
     	 	}
@@ -79,8 +79,8 @@ class Event1Controll extends Controller
     	 //$Request->file('igmEven')->move('upload/khuyenmai/',$file_name);
     	 $event->NgayBatDau 		=	$Request->NgayBatDau;
     	 $event->NgayKetThuc 		=	$Request->NgayKetThuc;
-    	 $event->trangthai 		=	$Request->ttevent;
-    	 $event->created_at		=	new dateTime();
+    	 $event->trangthai 			=	$Request->ttevent;
+    	 $event->updated_at			=	new dateTime();
     	 $event->save();
     	 return redirect()->route('getEvent1List')->with(['flash_level' => 'success', 'flash_message' => 'Thêm sự kiện thành công !']);
     }

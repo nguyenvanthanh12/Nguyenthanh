@@ -40,5 +40,18 @@ Route::group(['middleware' => 'auth'], function () {
     		route::get('sua/{id}', 'Event1Controll@getEvent1Edit')->name('getEvent1Edit')->where('id', '[0-9]+');
     		Route::post('sua/{id}', 'Event1Controll@postEvent1Edit')->name('postEvent1Edit')->where('id', '[0-9]+');
     	});
+    	Route::group(['prefix' => 'taikhoan'],function(){
+    		Route::get('danhsach', 'UserController@getUserList')->name('getUserList');
+    		Route::get('them', 'UserController@getUserAdd')->name('getUserAdd');
+    		Route::post('them', 'UserController@postUserAdd')->name('postUserAdd');
+    		Route::get('xoa/{id}', 'UserController@getUserDelete')->name('getUserDelete')->where('id', '[0-9]+');
+    		route::get('sua/{id}', 'UserController@getUserEdit')->name('getUserEdit')->where('id', '[0-9]+');
+    		Route::post('sua/{id}', 'UserController@postUserEdit')->name('postUserEdit')->where('id', '[0-9]+');
+    	});
+    	Route::group(['prefix' => 'sanpham'],function(){
+    		Route::get('danhsach', 'productController@getProductList')->name('getProductList');
+    		Route::get('them', 'productController@getProductAdd')->name('getProductAdd');
+    		Route::post('them', 'productController@postProductAdd')->name('postProductAdd');
+    	});
     });
 });
