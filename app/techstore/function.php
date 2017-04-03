@@ -1,5 +1,5 @@
 <?php
-function menuMulti($data, $parent_id = 0,$str="--",$select = 0){
+function menuMulti($data, $parent_id = 0,$str="-- ",$select = 0){
 	foreach ($data as $val) {
 		$id = $val['id'];
 		$name = $val['Ten'];
@@ -10,7 +10,7 @@ function menuMulti($data, $parent_id = 0,$str="--",$select = 0){
 				echo '<option value="'.$id.'">'.$str.$name.'</option>';
 			}
 			
-			menuMulti($data, $id,$str."--",$select);	
+			menuMulti($data, $id,$str."-- ",$select);	
 		}
 		
 	}

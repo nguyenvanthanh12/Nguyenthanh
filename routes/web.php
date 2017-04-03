@@ -32,5 +32,13 @@ Route::group(['middleware' => 'auth'], function () {
     		route::get('sua/{id}', 'CateController@getCateEdit')->name('getCateEdit')->where('id', '[0-9]+');
     		Route::post('sua/{id}', 'CateController@postCateEdit')->name('postCateEdit')->where('id', '[0-9]+');
     	});
+    	Route::group(['prefix' => 'khuyenmailoai1'],function(){
+    		Route::get('danhsach', 'Event1Controll@getEvent1List')->name('getEvent1List');
+    		Route::get('them', 'Event1Controll@getEvent1Add')->name('getEvent1Add');
+    		Route::post('them', 'Event1Controll@postEvent1Add')->name('postEvent1Add');
+    		Route::get('xoa/{id}', 'Event1Controll@getEvent1Delete')->name('getEvent1Delete')->where('id', '[0-9]+');
+    		route::get('sua/{id}', 'Event1Controll@getEvent1Edit')->name('getEvent1Edit')->where('id', '[0-9]+');
+    		Route::post('sua/{id}', 'Event1Controll@postEvent1Edit')->name('postEvent1Edit')->where('id', '[0-9]+');
+    	});
     });
 });
