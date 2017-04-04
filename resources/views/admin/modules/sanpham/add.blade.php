@@ -5,18 +5,30 @@
 <!-- /.col-lg-12 -->
 <div class="col-lg-7" style="padding-bottom:120px">
     @include('admin.blocks.error')
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
         <div class="form-group">
             <label>Chương trình khuyến mãi:</label>
             <select name="idKM" class="form-control">
                 <option value="">--Chọn--</option>
+                <?php
+                $select = old('idKM');
+                    foreach ($event as $value) {
+                        if($select != 0 && $value['id'] == $select){
+                            echo '<option value="'.$value['id'].'" selected>'.$value['Ten'].'</option>';    
+                        }else{
+                            echo '<option value="'.$value['id'].'" >'.$value['Ten'].'</option>';    
+                        }
+                        
+                    }
+                ?>
             </select>
         </div>
         <div class="form-group">
             <label>Thư mục cha:</label>
             <select name="idLSP" class="form-control">
                 <option value="">--Chọn--</option>
+                <?php menuMulti($cate,0,"-- ",old('idLSP')); ?>
             </select>
         </div>
         <div class="form-group">

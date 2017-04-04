@@ -53,5 +53,15 @@ Route::group(['middleware' => 'auth'], function () {
     		Route::get('them', 'productController@getProductAdd')->name('getProductAdd');
     		Route::post('them', 'productController@postProductAdd')->name('postProductAdd');
     	});
+    	Route::group(['prefix' => 'thongso'],function(){
+    		Route::get('themthongso', 'parameterController@getparaadd')->name('getparaadd');
+    		Route::post('themthongso', 'parameterController@postparaadd')->name('postparaadd');
+    		Route::get('danhsach', 'parameterController@getParaList')->name('getParaList');
+    		Route::get('them', 'parameterController@getParaAdd1')->name('getParaAdd1');
+    		Route::post('them', 'parameterController@postParaAdd1')->name('postParaAdd1');
+    		Route::get('xoa/{id}', 'parameterController@getParaDel')->name('getParaDel')->where('id', '[0-9]+');
+    		route::get('sua/{id}', 'parameterController@getParaEdit')->name('getParaEdit')->where('id', '[0-9]+');
+    		Route::post('sua/{id}', 'parameterController@postParaEdit')->name('postParaEdit')->where('id', '[0-9]+');
+    	});
     });
 });

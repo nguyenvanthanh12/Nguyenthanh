@@ -8,4 +8,8 @@ class Cate extends Model
 {
     protected $table = 'ts_loaisanpham';
     protected $guarded = [];
+
+    public function productCate (){
+    	return $this->hasMany('App\Models\product');
+    }
 }

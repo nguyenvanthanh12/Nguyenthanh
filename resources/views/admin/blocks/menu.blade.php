@@ -40,6 +40,21 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
+                <a href="#"><i class="fa fa-cog fa-fw"></i> Thông số sản phẩm<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{!! route('getParaList') !!}">Danh sách</a>
+                    </li>
+                    <li>
+                        <a href="{!! route('getparaadd') !!}">Thêm thông số</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('getParaAdd1') }}">Thêm chi tiết</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-gift fa-fw"></i> Khuyến mại loại 1<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
