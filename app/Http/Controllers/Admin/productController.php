@@ -8,6 +8,7 @@ use App\Http\Requests\productRequest;
 use App\Models\product;
 use App\Models\Cate;
 use App\Models\Even1;
+use App\Models\parameter;
 use dateTime,file;
 
 class productController extends Controller
@@ -17,9 +18,10 @@ class productController extends Controller
     }
 
     public function getProductAdd(){
+        $para = parameter::select('id','Ten')->get()->toArray();
     	$cate = Cate::select('id','Ten','parent_id')->get()->toArray();
     	$event = Even1::select('id','Ten','trangthai')->get()->toArray();
-    	return view('admin.modules.sanpham.add',['cate' => $cate, 'event' => $event]);
+    	return view('admin.modules.sanpham.add',['para' => $para,'cate' => $cate, 'event' => $event]);
     }
 
     public function postProductAdd(productRequest $Request){

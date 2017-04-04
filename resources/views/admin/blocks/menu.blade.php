@@ -48,9 +48,7 @@
                     <li>
                         <a href="{!! route('getparaadd') !!}">Thêm thông số</a>
                     </li>
-                    <li>
-                        <a href="{{ route('getParaAdd1') }}">Thêm chi tiết</a>
-                    </li>
+                    
                 </ul>
                 <!-- /.nav-second-level -->
             </li>

@@ -34,11 +34,11 @@ class parameterController extends Controller
     }
 
     public function getParaList(){
-    	$data = detailPara::select('id','idLSP','idTS','ChiTiet')->get()->toArray();
+    	$data = parameter::select('id','Ten')->get()->toArray();
     	return view('admin.modules.thongso.list',['data' => $data]);
     }
 
-    public function getParaAdd1(){
+    /*public function getParaAdd1(){
     	$para = parameter::select('id','Ten')->get()->toArray();
     	$cate = Cate::select('id','Ten','parent_id')->get()->toArray();
     	return view('admin.modules.thongso.add',['para' => $para, 'cate' => $cate]);
@@ -51,36 +51,30 @@ class parameterController extends Controller
 		$paraDetail->ChiTiet =	$request->ChiTiet;
 		$paraDetail->save();
 		return redirect()->route('getParaList')->with(['flash_level' => 'success', 'flash_message' => 'Thêm chi tiết thông số thành công !']);
-    }
+    }*/
 
     public function getParaDel($id){
-    	$para = detailPara::find($id);
+    	$para = parameter::find($id);
     	$para->delete($id);
     	return redirect()->route('getParaList')->with(['flash_level' => 'success', 'flash_message' => 'Xóa thông số thành công !']);
     }
 
     public function getParaEdit($id){
-    	$data = detailPara::findOrFail($id);
-    	$para = parameter::select('id','Ten')->get()->toArray();
-    	$cate = Cate::select('id','Ten','parent_id')->get()->toArray();
-    	return view('admin.modules.thongso.edit',['data' => $data,'para' => $para, 'cate' => $cate]);
+    	$data = parameter::findOrFail($id);
+    	return view('admin.modules.thongso.edit',['data' => $data]);
     }
 
     public function postParaEdit(Request $request,$id){
     	$this->validate($request,
     		[
-    			'thongso'	=>	'required',
-    			'idLSP'		=>	'required'
+    			'Ten'	=>	'required',
     		],
     		[
-    			'thongso.required'	=>	'Bạn chưa chọn thông số !',
-    			'idLSP.required'	=>	'Bạn chưa chọn loại sản phẩm !'
+    			'Ten.required'	=>	'Bạn nhập tên thông số !',
     		]
     	);
-    	$para = detailPara::find($id);
-		$para->idLSP      = $request->idLSP;
-		$para->idTS       = $request->thongso;
-		$para->ChiTiet    = $request->ChiTiet;
+    	$para = parameter::find($id);
+		$para->Ten      = $request->Ten;
 		$para->updated_at = new dateTime();
     	$para->save();
     	return redirect()->route('getParaList')->with(['flash_level' => 'success', 'flash_message' => 'Sửa thông số thành công !']);

@@ -6,9 +6,7 @@
     <thead>
         <tr align="center">
             <th>STT</th>
-            <th>Loại sản phẩm</th>
-            <th>Thông số</th>
-            <th>Chi tiết</th>
+            <th>Tên</th>
             <th>Delete</th>
             <th>Edit</th>
         </tr>
@@ -20,12 +18,8 @@
         <tr>
             <td>{!! $stt; !!}</td>
             <td><?php 
-                $lsp = DB::table('ts_loaisanpham')->where('id',$val['idLSP'])->first();
-                echo $lsp->Ten;
+                echo $val['Ten']
              ?></td>
-            <td><?php $ts = DB::table('ts_thongso')->where('id',$val['idTS'])->first();
-                echo $ts->Ten; ?></td>
-            <td><?php echo $val['ChiTiet'] ?></td>
             <td class="center">
             <i class="fa fa-trash-o  fa-fw"></i>
             <a href="{!! route('getParaDel',$val['id']) !!}" onclick="return confirm('Bạn có chắc muốn xóa thông số này ?')" > Xóa</a>

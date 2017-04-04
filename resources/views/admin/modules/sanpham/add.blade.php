@@ -3,9 +3,9 @@
 @section('action','Thêm')
 @section('content')
 <!-- /.col-lg-12 -->
-<div class="col-lg-7" style="padding-bottom:120px">
+<form action="" method="POST" enctype="multipart/form-data">
+    <div class="col-lg-6" style="padding-bottom:120px">
     @include('admin.blocks.error')
-    <form action="" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
         <div class="form-group">
             <label>Chương trình khuyến mãi:</label>
@@ -47,11 +47,7 @@
             <label>Images</label>
             <input type="file" name="fImages">
         </div>
-        <div class="form-group">
-            <label>Tóm Tắt:</label>
-            <textarea class="form-control" rows="3" id="TomTat" name="TomTat">{!! old('TomTat') !!}</textarea>
-            <script type="text/javascript">CKEDITOR.replace('TomTat');</script>
-        </div>
+        
         <div class="form-group">
             <label>Nội dung:</label>
             <textarea class="form-control" rows="3" id="NoiDung" name="NoiDung">{!! old('NoiDung') !!}</textarea>
@@ -73,6 +69,19 @@
         </div>
         <button type="submit" class="btn btn-default">Thêm</button>
         <button type="reset" class="btn btn-default">Reset</button>
-    <form>
-</div>
+    </div>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-5" style="padding-bottom:120px">
+        @for ($i = 1;$i <= 5;$i++)
+        <div class="form-group">
+            <label>Ảnh phụ {{ $i }}:</label>
+            <input type="file" name="fproductdetail[]">
+        </div>
+        @endfor
+        <div>
+           
+
+        </div>
+    </div>
+<form>
 @endsection
