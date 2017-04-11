@@ -9,11 +9,15 @@ use App\Models\product;
 use App\Models\Cate;
 use App\Models\Even1;
 use App\Models\parameter;
+use App\Models\detailPara;
+use App\Models\productImage;
 use dateTime,file;
+use Input;
 
 class productController extends Controller
 {
     public function getProductList(){
+        $data = product::select('id','MaSP','TenSP','Gia','');
     	return view('admin.modules.sanpham.list');
     }
 
@@ -35,13 +39,43 @@ class productController extends Controller
         if(strlen($file_name) >0) {
             $Request->file('fImages')->move('upload/product/',$file_name);
         }
-        $product->TomTat      =   $Request->TomTat;
         $product->NoiDung     =   $Request->NoiDung;
         $product->BaoHanh     =   $Request->BaoHanh;
         $product->idKM        =   $Request->idKM;
         $product->idLSP       =   $Request->idLSP;
         $product->created_at  =   new dateTime();
         $product->save();
+        $product_id = $product->id;
+        if($Request->fproductdetail){
+            foreach ($Request->fproductdetail as $val) {
+                $product_img = new productImage;
+                if(isset($val)){
+                    $product_img->Ten   =   $val->getClientOriginalName();
+                    $product_img->idSP  =   $product_id;
+                    $val->move('upload/product/imgdetail/',$val->getClientOriginalName());
+                    $product_img->save();
+                }
+            }
+        }
+        /*if($Request->detailPara){
+            $detail = new detailPara;
+            $detail->ChiTiet = $Request->detailPara;
+            $detail->idSP    =  $product_id;
+            $detail->idTS    =  1;
+            $detail->save();
+        }*/
         return redirect()->route('getProductList')->with(['flash_level' => 'success', 'flash_message' => 'Thêm sản phẩm thành công !']);
+    }
+
+    public function getProductDel($id){
+
+    }
+
+    public function getProductEdit($id){
+        return view('admin.modules.sanpham.edit');
+    }
+
+    public function postProductEdit($id){
+
     }
 }

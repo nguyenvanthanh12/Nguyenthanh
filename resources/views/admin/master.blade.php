@@ -8,6 +8,10 @@
     <meta name="author" content="Vu Quoc Tuan">
     <title>Quản Trị TechStore</title>
 
+    <!-- Select 2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <link href="{!! asset('public/css/select2.min.css') !!}" rel="stylesheet">
+
     <!-- Bootstrap Core CSS -->
     <link href="{!! asset('public/ts_admin/bower_components/bootstrap/dist/css/bootstrap.min.css') !!}" rel="stylesheet">
 
@@ -116,6 +120,10 @@
     <!-- Custom Theme JavaScript -->
     <script src="{!! asset('public/ts_admin/dist/js/sb-admin-2.js') !!}"></script>
 
+    <!-- Select 2 -->
+    <script src="{!! asset('public/js/select2.min.js') !!}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
     <!-- DataTables JavaScript -->
     <script src="{!! asset('public/ts_admin/bower_components/DataTables/media/js/jquery.dataTables.min.js') !!}"></script>
     <script src="{!! asset('public/ts_admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') !!}"></script>
@@ -128,6 +136,9 @@
         });
         $('div.alert').delay(3000).slideUp();
     });
+    </script>
+    <script type="text/javascript">
+    $(".select-multiple").select2();
     </script>
 </body>
 

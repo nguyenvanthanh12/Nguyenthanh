@@ -29,7 +29,6 @@ class productRequest extends FormRequest
             'TenSP'         =>   'required',
             'Gia'           =>   'required',
             'fImages'       =>   'required|image',
-            'TomTat'        =>   'required',
             'NoiDung'       =>   'required'
         ];
     }
@@ -41,8 +40,7 @@ class productRequest extends FormRequest
             'TenSP.required'        =>   'Bạn chưa nhập tên sản phẩm !',
             'Gia.required'          =>   'Bạn chưa nhập giá sản phẩm !',
             'fImages.required'      =>   'Bạn chưa tải ảnh đại diện cho sản phẩm !',
-            'fImages.image'      =>   'aaaaaaaaaaaaaa !',
-            'TomTat.required'       =>   'Bạn chưa nhập tóm tắt cho sản phẩm !',
+
             'NoiDung.required'      =>   'Bạn chưa nhập mô tả cho sản phẩm !'
         ];
     }

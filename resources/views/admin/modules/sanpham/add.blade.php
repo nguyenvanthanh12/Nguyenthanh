@@ -78,9 +78,13 @@
             <input type="file" name="fproductdetail[]">
         </div>
         @endfor
-        <div>
-           
-
+        <div class="form-group">
+            <label>Thông số:</label>
+            <select class="form-control select-multiple" multiple="multiple">
+            @foreach($para as $val)
+              <option value="<?php echo $val['id'] ?>"><?php echo $val['Ten'] ?></option>
+            @endforeach
+            </select>
         </div>
     </div>
 <form>

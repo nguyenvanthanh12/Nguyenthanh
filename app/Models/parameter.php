@@ -10,6 +10,6 @@ class parameter extends Model
     protected $guarded = [];
 
     public function paraDetail(){
-    	return $this->hasMany('App\Models\detailPara');
+    	return $this->belongsToMany('App\Models\product');
     }
 }
