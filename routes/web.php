@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('form', function(){
+	return view('admin.blocks.form');
+});
 Route::get('ts_login', 'LoginController@getLogin')->name('getLogin');
 Route::post('ts_login', 'LoginController@postLogin')->name('postLogin');
 Route::get('logout', 'LoginController@getLogout')->name('getLogout');
@@ -55,6 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
     		Route::get('xoa/{id}', 'productController@getProductDel')->name('getProductDel')->where('id', '[0-9]+');
     		route::get('sua/{id}', 'productController@getProductEdit')->name('getProductEdit')->where('id', '[0-9]+');
     		Route::post('sua/{id}', 'productController@postProductEdit')->name('postProductEdit')->where('id', '[0-9]+');
+    		Route::get('delImg/{id}', 'productController@getDelImg')->name('getDelImg');
     	});
     	Route::group(['prefix' => 'thongso'],function(){
     		Route::get('themthongso', 'parameterController@getparaadd')->name('getparaadd');

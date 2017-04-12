@@ -1,0 +1,12 @@
+.icon_del {
+	position: relative;
+	top: -160px;
+	right: -150px;
+}
+
+.imgDT {
+	box-sizing: border-box;
+	min-height: 220px;
+	padding-top: 10px;
+}
+#insert{ margin-top: 10px; }

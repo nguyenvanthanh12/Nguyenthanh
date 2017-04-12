@@ -16,8 +16,8 @@ class CreateLoaithongsoTable extends Migration
         Schema::create('ts_loaithongso', function (Blueprint $table) {
             $table->integer('idTS')->unsigned();
             $table->foreign('idTS')->references('id')->on('ts_thongso')->onDelete('cascade');
-            $table->integer('idSP')->unsigned();
-            $table->foreign('idSP')->references('id')->on('ts_sanpham')->onDelete('cascade');
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('ts_sanpham')->onDelete('cascade');
         });
     }
 

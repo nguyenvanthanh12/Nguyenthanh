@@ -21,6 +21,10 @@ class product extends Model
     	return $this->hasMany('App\Models\productImage');
     }
 
+    public function DetailPara(){
+        return $this->hasMany('App\Models\detailPara');
+    }
+
     public function para(){
         return $this->belongsToMany('App\Models\parameter');
     }

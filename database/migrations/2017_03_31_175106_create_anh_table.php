@@ -16,8 +16,8 @@ class CreateAnhTable extends Migration
         Schema::create('ts_anh', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Ten');
-            $table->integer('idSP')->unsigned();
-            $table->foreign('idSP')->references('id')->on('ts_sanpham')->onDelete('cascade');
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('ts_sanpham')->onDelete('cascade');
         });
     }
 

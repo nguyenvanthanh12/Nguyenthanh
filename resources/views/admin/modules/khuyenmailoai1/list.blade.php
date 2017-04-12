@@ -12,8 +12,7 @@
             <th>Ngày diễn ra</th>
             <th>Ngày kết thúc</th>
             <th>Trạng Thái</th>
-            <th>Delete</th>
-            <th>Edit</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -34,8 +33,10 @@
                     }else { echo 'Hiện'; }
                 ?>
             </td>
-            <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="{!! route('getEvent1Delete',$val['id']) !!}" onclick="return confirm('Bạn có chắc muốn xóa danh mục này ?')"> Xóa</a></td>
-            <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{!! route('getEvent1Edit',$val['id']) !!}">Sửa</a></td>
+            <td class="center">
+                <i class="fa fa-pencil fa-fw"></i> <a href="{!! route('getEvent1Edit',$val['id']) !!}">Sửa</a><br />
+                <i class="fa fa-trash-o  fa-fw"></i><a href="{!! route('getEvent1Delete',$val['id']) !!}" onclick="return confirm('Bạn có chắc muốn xóa danh mục này ?')"> Xóa</a>
+            </td>
         </tr>
         @endforeach
     </tbody>

@@ -30,6 +30,9 @@
     <!-- DataTables Responsive CSS -->
     <link href="{!! asset('public/ts_admin/bower_components/datatables-responsive/css/dataTables.responsive.css') !!}" rel="stylesheet">
 
+    <!-- my style -->
+    <link href="{!! asset('public/css/style.css') !!}" rel="stylesheet">
+
     <!-- Nhúng trình soạn thảo -->
     <script type="text/javascript" src="{!! asset('public/ts_admin/js/ckeditor/ckeditor.js') !!}"></script>
     <script type="text/javascript" src="{!! asset('public/ts_admin/js/ckfinder/ckfinder.js') !!}"></script>
@@ -124,22 +127,14 @@
     <script src="{!! asset('public/js/select2.min.js') !!}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
+    <!-- my script -->
+    <script src="{!! asset('public/js/myscript.js') !!}"></script>
+
     <!-- DataTables JavaScript -->
     <script src="{!! asset('public/ts_admin/bower_components/DataTables/media/js/jquery.dataTables.min.js') !!}"></script>
     <script src="{!! asset('public/ts_admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') !!}"></script>
 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-                responsive: true
-        });
-        $('div.alert').delay(3000).slideUp();
-    });
-    </script>
-    <script type="text/javascript">
-    $(".select-multiple").select2();
-    </script>
+
 </body>
 
 </html>

@@ -24,7 +24,7 @@ class Event1Request extends FormRequest
     public function rules()
     {
         return [
-            'Ten'       =>  'required|unique:ts_khuyenmai,Ten',
+            'Ten'       =>  'required',
             'HinhThuc'  =>  'required',
             'igmEven'   =>  'required',
             'NgayBatDau'=>  'required',
@@ -35,7 +35,6 @@ class Event1Request extends FormRequest
     public function messages(){
         return [
             'Ten.required'          =>  'Bạn chưa nhập tên cho sự kiện',
-            'Ten.unique'            =>  'Sự kiện này đã tồn tại',
             'igmEven.required'      =>  'Bạn chưa chọn hình đại diện',
             'HinhThuc.required'     =>  'Bạn chưa nhập hình thức diễn ra sự kiện',
             'NgayBatDau.required'   =>  'Bạn chưa nhập ngày bắt đầu sự kiện'

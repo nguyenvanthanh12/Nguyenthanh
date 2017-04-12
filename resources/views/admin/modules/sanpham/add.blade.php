@@ -79,8 +79,8 @@
         </div>
         @endfor
         <div class="form-group">
-            <label>Thông số:</label>
-            <select class="form-control select-multiple" multiple="multiple">
+            <label>Thông số: </label>
+            <select class="form-control select-multiple" multiple="multiple" name="parameter[]">
             @foreach($para as $val)
               <option value="<?php echo $val['id'] ?>"><?php echo $val['Ten'] ?></option>
             @endforeach
