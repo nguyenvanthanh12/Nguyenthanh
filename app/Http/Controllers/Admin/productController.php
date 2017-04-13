@@ -58,13 +58,14 @@ class productController extends Controller
                 }
             }
         }
-
-        foreach ($Request->parameter as $param) {
-            $detailPara = new detailPara;
-            if(isset($param)){
-                $detailPara->idTS =  $param;
-                $detailPara->product_id =   $product_id;
-                $detailPara->save();
+        if(isset($Request->parameter)){
+            foreach ($Request->parameter as $param) {
+                $detailPara = new detailPara;
+                if(isset($param)){
+                    $detailPara->idTS =  $param;
+                    $detailPara->product_id =   $product_id;
+                    $detailPara->save();
+                }
             }
         }
 
@@ -135,14 +136,17 @@ class productController extends Controller
             }
             
         }
-        foreach ($Request->parameter as $param) {
-            $detailPara = new detailPara;
-            if(isset($param)){
-                $detailPara->idTS =  $param;
-                $detailPara->product_id =   $id;
-                $detailPara->save();
+        if (isset($Request->parameter)) {
+            foreach ($Request->parameter as $param) {
+                $detailPara = new detailPara;
+                if(isset($param)){
+                    $detailPara->idTS =  $param;
+                    $detailPara->product_id =   $id;
+                    $detailPara->save();
+                }
             }
         }
+        
          return redirect()->route('getProductList')->with(['flash_level' => 'success', 'flash_message' => 'Sửa sản phẩm thành công !']);
 
     }

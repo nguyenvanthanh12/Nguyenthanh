@@ -11,9 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix' => '/', 'namespace' => 'FrontEnd'], function(){
+	Route::get('/', 'FrontEndController@index')->name('index');
+	Route::get('loai-san-pham/{id}/{TenKhongDau}', 'FrontEndController@getCate')->name('getCate')->where('id', '[0-9]+');
+	Route::get('chi-tiet-san-pham/{id}/{TenKhongDau}', 'FrontEndController@getDetail')->name('getDetail')->where('id', '[0-9]+');
 });
+
+
+
+
+
+
+
+
+
 Route::get('form', function(){
 	return view('admin.blocks.form');
 });

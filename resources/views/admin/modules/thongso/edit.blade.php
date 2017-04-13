@@ -12,7 +12,7 @@
             <input type="text" name="Ten" {!! old('Ten',isset($data['Ten']) ? $data['Ten'] : null) !!}>
             
         </div> 
-        <button type="submit" class="btn btn-default"> Thêm </button>
+        <button type="submit" class="btn btn-default"> Sửa </button>
         <button type="reset" class="btn btn-default">Reset</button>
     </form>
 </div>
