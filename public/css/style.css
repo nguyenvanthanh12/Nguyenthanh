@@ -12,3 +12,4 @@
 #insert{ margin-top: 10px; }
 *{margin: 0; padding: 0;}
 
+div.alert ul { margin-left: 10px; }

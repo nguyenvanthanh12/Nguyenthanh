@@ -16,6 +16,16 @@
                 <a href="{!! url('thql_admin') !!}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
+            <?php 
+                $lienhe = DB::table('ts_lienhe')->select('id','trangthai')->where('trangthai',0)->get();
+            ?>
+                <a href="{!! route('getContactList') !!}" ><i class="fa fa-phone fa-fw"></i> Liên hệ 
+                    @if(count($lienhe) > 0)
+                    <span class="badge" style="background: red;">{{ count($lienhe) }}</span>
+                    @endif
+                </a>
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Loại sản phẩm<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

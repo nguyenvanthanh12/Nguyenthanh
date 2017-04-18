@@ -69,9 +69,7 @@
     });
     $(".megamenu").megamenu();
     $('div.alert').delay(3000).slideUp();
-    $('ul.nav li:first-child').click(function(){
-      alert(111);
-    });
+   
   });
 </script>
 </body>

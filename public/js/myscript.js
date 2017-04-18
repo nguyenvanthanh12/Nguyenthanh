@@ -5,6 +5,7 @@ $(document).ready(function() {
     $('div.alert').delay(3000).slideUp();
 });
 $(".select-multiple").select2();
+
 $(document).ready(function(){
 	$('#addImg').click(function(){
 		$('#insert').append('<div class="form-group"><input type="file" name="feditdetail[]"></div>');
@@ -32,3 +33,11 @@ $(document).ready(function(){
 		});
 	});
 });
+
+/*$(document).ready(function(){
+
+	$('a#xem').on('click',function(){
+		var url = "http://nguyenthanh.dev/thql_admin/lienhe/danhsach/setting/";
+		var idTin
+	});
+});*/

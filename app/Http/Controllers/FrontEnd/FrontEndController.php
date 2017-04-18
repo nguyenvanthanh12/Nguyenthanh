@@ -4,8 +4,8 @@ namespace App\Http\Controllers\FrontEnd;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Lienhe;
-use DB,Mail;
+use App\Models\Contact;
+use DB,Mail,dateTime;
 
 class FrontEndController extends Controller
 {
@@ -43,18 +43,30 @@ class FrontEndController extends Controller
     public function postLienhe(Request $Request){
         $this->validate($Request,
             [
-                'name'  =>  'required',
-                'email' =>  'required'
+                'HoTen'  =>  'required',
+                'email' =>  'required|email'
             ],
             [
-                'name.required'  =>  'Họ tên bắt buộc phải nhập !',
-                'email.required' =>  'Địa chỉ mail bắt buộc phải phập'
+                'HoTen.required'  =>  'Họ tên bắt buộc phải nhập !',
+                'email.required' =>  'Địa chỉ mail bắt buộc phải phập',
+                'email.email'   =>  'Địa chỉ mail bạn nhập không tồn tại !'
             ]
         );
-        $data = ['HoTen' => Request::input('name'),'email' => Request::input('email'),'NoiDung' => Request::input('message')];
+        $data = ['HoTen' => $Request->HoTen,'email' => $Request->email,'TieuDe' => $Request->TieuDe,'NoiDung' => $Request->NoiDung];
         Mail::send('emails.blanks',$data,function($msg){
-            $msg->from('tieuyentu0987@gmail.com','ThanhNguyen');
+            $msg->from('tieuyentu1231@gmail.com','ThanhNguyen');
             $msg->to('tieuyentu0987@gmail.com','NguyenThanh')->subject('test mail');
         });
+        $contact = new Contact;
+        $contact->TieuDe    =   $Request->TieuDe;
+        $contact->NoiDung   =   $Request->NoiDung;
+        $contact->HoTen     =   $Request->HoTen;
+        $contact->email     =   $Request->email;
+        $contact->created_at = new dateTime();
+        $contact->save();
+        echo "<script>
+             alert('Cám ơn bạn đã góp ý. Chúng tôi sẽ xem xét và trả lời bạn trong thời gian sớm nhất !');
+             window.location = '".URL('/')."'
+             </script>";
     }
 }

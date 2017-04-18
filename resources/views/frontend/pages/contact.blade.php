@@ -1,69 +1,57 @@
 @extends('frontend.master')
 @section('description','Liên hệ')
 @section('content')
-<div id="maincontainer">
-  <section id="product">
-    <div class="container">
-     <!--  breadcrumb --> 
-      <ul class="breadcrumb">
-        <li>
-          <a href="{!! url('/') !!}">Trang chủ</a>
-        </li>
-        <li class="active">Liên hệ</li>
-      </ul>  
-      <!-- Contact Us-->
-      <h1 class="heading1"><span class="maintext">Liên hệ</span></h1>
-      <div class="row">
-        <div class="span9">
-        @include('admin.blocks.error')
-          <form class="form-horizontal" action="{!! url('lien-he') !!}"  method="post">
-          <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-            <fieldset>
-              <div class="control-group">
-                <label for="name" class="control-label">Họ tên: <span class="required">*</span></label>
-                <div class="controls">
-                  <input type="text"  class="required" id="name" value="" name="name">
-                </div>
-              </div>
-              <div class="control-group">
-                <label for="email" class="control-label">Email <span class="required">*</span></label>
-                <div class="controls">
-                  <input type="email"  class="required email" id="email" value="" name="email">
-                </div>
-              </div>
-              <div class="control-group">
-                <label for="message" class="control-label">Nội dung</label>
-                <div class="controls">
-                  <textarea  class="required" rows="6" cols="40" id="message" name="message"></textarea>
-                </div>
-              </div>
-              <div class="form-actions">
-                <input class="btn btn-orange" type="submit" value="Gửi" id="submit_id">
-                <input class="btn" type="reset" value="Reset">
-              </div>
-            </fieldset>
-          </form>
-        </div>
-        
-        <!-- Sidebar Start-->
-        <div class="span3">
-          <aside>
-            <div class="sidewidt">
-              <h2 class="heading2"><span>Thông tin liên hệ</span></h2>
-              <p>
-                <br>
-                Phone: (012) 333-7890<br>
-                Fax: (123) 444-7890<br>
-                Email: tieuyentu0987@gmail.com<br>
-                Web: nguyenthanh.dev<br>
-              </p>
-            </div>
-          </aside>
-        </div>
-        <!-- Sidebar End-->
-        
+<!-- breadcrumb -->
+<div class="khoangcach"></div>
+<div class="khoangcach"></div>
+<div class="brc">
+  <ul class="breadcrumb container">
+    <li><a href="{!! url('/') !!}">Trang chủ</a></li>
+    <li class="active">Liên hệ</li>
+  </ul>
+</div>
+<!-- end breadcrumb -->
+<div class="container">
+  <div class="contact-info">
+    <h3>Liên Hệ</h3>
+  </div>
+  <div class="row">
+    <div class="col-sm-offset-2 col-sm-5">
+      @include('admin.blocks.error')
+    </div>
+    <div class="col-sm-5"></div>
+  </div>
+  <form class="form-horizontal" action="{{ url('lien-he') }}" method="post">
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="HoTen">Họ Tên (<span>*</span>) :</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="HoTen" id="HoTen" placeholder="Nguyễn Văn A"/>
       </div>
     </div>
-  </section>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Email (<span>*</span>) :</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="email" id="email" placeholder="abc@email.com"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="TieuDe">Tiêu đề :</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="TieuDe" name="TieuDe">
+      </div>
+    </div>
+    <div class="form-group">        
+      <label class="control-label col-sm-2">Nội dung :</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" name="NoiDung"></textarea>
+      </div>
+    </div>
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Gửi</button>
+      </div>
+    </div>
+  </form>
 </div>
 @endsection

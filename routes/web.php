@@ -81,5 +81,9 @@ Route::group(['middleware' => 'auth'], function () {
     		route::get('sua/{id}', 'parameterController@getParaEdit')->name('getParaEdit')->where('id', '[0-9]+');
     		Route::post('sua/{id}', 'parameterController@postParaEdit')->name('postParaEdit')->where('id', '[0-9]+');
     	});
+    	Route::group(['prefix' => 'lienhe'],function(){
+    		Route::get('danhsach', 'ContactController@getContactList')->name('getContactList');
+    		Route::get('setting/{id}', 'ContactController@getSetting')->name('getSetting')->where('id', '[0-9]+');
+    	});
     });
 });

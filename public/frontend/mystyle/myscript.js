@@ -1,7 +1,7 @@
 window.onscroll = function() {scrollFunction()};
 
 	function scrollFunction() {
-	    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+	    if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
 	        document.getElementById("myBtn").style.display = "block";
 	    } else {
 	        document.getElementById("myBtn").style.display = "none";
@@ -24,4 +24,5 @@ $(document).ready(function(){
     });
     $('ul#test li:first-of-type').addClass('active');
     $('div.sanpham div.fade:first-of-type').addClass('in active');
+    $('div.alert').delay(2500).slideUp();
 });
