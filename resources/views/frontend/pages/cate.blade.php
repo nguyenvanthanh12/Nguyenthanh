@@ -1,138 +1,123 @@
 @extends('frontend.master')
-@section('description','Loại sản phẩm')
 @section('content')
-<div id="maincontainer">
-  <section id="product">
-    <div class="container">
-     <!--  breadcrumb -->  
-      <ul class="breadcrumb">
-        <li>
-          <a href="#">Home</a>
-          <span class="divider">/</span>
-        </li>
-        <li class="active">Category</li>
+
+<!-- breadcrumb -->
+<div class="khoangcach"></div>
+<div class="khoangcach"></div>
+<div class="brc">
+  <ul class="breadcrumb container">
+    <li><a href="{!! url('/') !!}">Trang chủ</a></li>
+    <li>{!! $menu_cate->Ten !!}</li>
+    <li class="active">{!! $cate->Ten !!}</li>
+  </ul>
+</div>
+<!-- end breadcrumb -->
+<div class="container">
+  <!-- Bộ lọc sidebar -->
+  <div class="col-md-3 search-sidebar">
+    <div class="title-sidebar">Tìm kiếm nâng cao</div>
+    <div class="ct-sidebar">
+      <h4>Gía</h4>
+      <ul>
+        <li><a href="">0 <small><u>đ</u></small> - 8.000.000 <small><u>đ</u></small></a></li>
+        <li><a href="">8.000.000 <small><u>đ</u></small> - 15.000.000 <small><u>đ</u></small></a></li>
+        <li><a href="">15.000.000 <small><u>đ</u></small> - 25.000.000 <small><u>đ</u></small></a></li>
+        <li><a href="">Trên 25.000.000 <small><u>đ</u></small></a></li>
       </ul>
-      <div class="row">        
-        <!-- Sidebar Start-->
-        <aside class="span3">
-         <!-- Category-->  
-          <div class="sidewidt">
-            <h2 class="heading2"><span>Loại sản phẩm</span></h2>
-            <ul class="nav nav-list categories">
-              @foreach($menu_cate as $val)
-              <li>
-                <a href="{!! URL('loai-san-pham/'.$val->id.'/'.$val->TenKhongDau) !!}">{!! $val->Ten !!}</a>
-              </li>
-              @endforeach
-            </ul>
-          </div>
-         <!--  Best Seller -->  
-          <div class="sidewidt">
-            <h2 class="heading2"><span>Best Seller</span></h2>
-            <ul class="bestseller">
-              <li>
-                <img width="50" height="50" src="img/prodcut-40x40.jpg" alt="product" title="product">
-                <a class="productname" href="product.html"> Product Name</a>
-                <span class="procategory">Women Accessories</span>
-                <span class="price">$250</span>
-              </li>
-              <li>
-                <img width="50" height="50" src="img/prodcut-40x40.jpg" alt="product" title="product">
-                <a class="productname" href="product.html"> Product Name</a>
-                <span class="procategory">Electronics</span>
-                <span class="price">$250</span>
-              </li>
-              <li>
-                <img width="50" height="50" src="img/prodcut-40x40.jpg" alt="product" title="product">
-                <a class="productname" href="product.html"> Product Name</a>
-                <span class="procategory">Electronics</span>
-                <span class="price">$250</span>
-              </li>
-            </ul>
-          </div>
-          <!-- Latest Product -->  
-          <div class="sidewidt">
-            <h2 class="heading2"><span>Sản phẩm mới</span></h2>
-            <ul class="bestseller">
-              @foreach($lastest as $lastest)
-              <li>
-                <img width="50" height="50" src="{!! asset('public/upload/product/'.$lastest->AnhChinh) !!}" alt="product" title="product">
-                <a class="productname" href="{!! URL('chi-tiet-san-pham/'.$lastest->id.'/'.$lastest->TenKhongDau.'.html') !!}"> {!! $lastest->TenSP !!}</a>
-                <span class="procategory">{!! $name_cate->Ten !!}</span>
-                <span class="price">{!! $lastest->Gia !!}</span>
-              </li>
-              @endforeach
-            </ul>
-          </div>
-          <!--  Must have -->  
-          <div class="sidewidt">
-          <h2 class="heading2"><span>Must have</span></h2>
-          <div class="flexslider" id="mainslider">
-            <ul class="slides">
-              <li>
-                <img src="img/product1.jpg" alt="" />
-              </li>
-              <li>
-                <img src="img/product2.jpg" alt="" />
-              </li>
-            </ul>
-          </div>
-          </div>
-        </aside>
-        <!-- Sidebar End-->
-        <!-- Category-->
-        <div class="span9">          
-          <!-- Category Products-->
-          <section id="category">
-            <div class="row">
-              <div class="span9">
-               <!-- Category-->
-                <section id="categorygrid">
-                  <ul class="thumbnails grid">
-
-                    @foreach($product_cate as $item)
-                    <li class="span3">
-                      <a class="prdocutname" href="{!! URL('chi-tiet-san-pham/'.$item->id.'/'.$item->TenKhongDau.'.html') !!}">{!! $item->TenSP !!}</a>
-                      <div class="thumbnail">
-                        <span class="sale tooltip-test">Sale</span>
-                        <a href="{!! URL('chi-tiet-san-pham/'.$item->id.'/'.$item->TenKhongDau.'.html') !!}"><img alt="" src="{!! asset('public/upload/product/'.$item->AnhChinh) !!}"></a>
-                        <div class="pricetag">
-                          <span class="spiral"></span><a href="#" class="productcart">Mua ngay</a>
-                          <div class="price">
-                            <div class="pricenew">{!! number_format($item->Gia,0,',','.') !!}đ</div>
-                            <div class="priceold">$5000.00</div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    @endforeach
-
-
-                  </ul>
-                  <div class="pagination pull-right">
-                    <ul>
-                      <li><a href="#">Prev</a>
-                      </li>
-                      <li class="active">
-                        <a href="#">1</a>
-                      </li>
-                      <li><a href="#">2</a>
-                      </li>
-                      <li><a href="#">3</a>
-                      </li>
-                      <li><a href="#">4</a>
-                      </li>
-                      <li><a href="#">Next</a>
-                      </li>
-                    </ul>
-                  </div>
-                </section>
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
     </div>
-  </section>
+    <div class="ct-sidebar">
+      <h4>CPU</h4>
+      <ul>
+        <li><a href="">Intel Core i3</a></li>
+        <li><a href="">Intel Core i5</a></li>
+        <li><a href="">Intel Core i7</a></li>
+        <li><a href="">Intel Pentium</a></li>
+        <li><a href="">Intel Cleron</a></li>
+        <li><a href="">Intel Core M</a></li>
+      </ul>
+    </div>
+    <div class="ct-sidebar">
+      <h4>RAM</h4>
+      <ul>
+        <li><a href="">2G</a></li>
+        <li><a href="">4G</a></li>
+        <li><a href="">8G</a></li>
+        <li><a href="">16G</a></li>
+        <li><a href="">32G</a></li>
+      </ul>
+    </div>
+    <div class="ct-sidebar">
+      <h4>Loại ổ cứng</h4>
+      <ul>
+        <li><a href="">HDD</a></li>
+        <li><a href="">SSD</a></li>
+      </ul>
+    </div>
+    <div class="ct-sidebar">
+      <h4>Kích thước màn hình</h4>
+      <ul>
+        <li><a href="">11 inch</a></li>
+        <li><a href="">12 inch</a></li>
+        <li><a href="">13 inch</a></li>
+        <li><a href="">14 inch</a></li>
+        <li><a href="">15 inch</a></li>
+        <li><a href="">17 inch</a></li>
+      </ul>
+    </div>
+    <div class="ct-sidebar">
+      <h4>VGA Card</h4>
+      <ul>
+        <li><a href="">Intel HD Graphic</a></li>
+        <li><a href="">NVIDVA Geforce GTX</a></li>
+        <li><a href="">Intel Iris</a></li>
+        <li><a href="">NVIDVA Geforce</a></li>
+        <li><a href="">NVIDVA Quadro</a></li>
+        <li><a href="">AMD Radeon R5</a></li>
+        <li><a href="">AMD Radeon R7</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- end bộ lọc sidebar -->
+  <!-- Liệt kê sản phẩm -->
+  
+  <div class="col-md-9 list-product">
+    <div class="title-list">Laptop hãng Dell (200)</div>
+    <div class="list-ct">
+    @if(count($product_cate) >0 )
+    <!-- sản phẩm -->
+      @foreach($product_cate as $item)
+      <div class="product-item">
+        <a href="{!! URL('chi-tiet-san-pham/'.$item->id.'/'.$item->TenKhongDau) !!}">
+          <img src="{!! asset('public/upload/product/'.$item->AnhChinh) !!}" class="img-responsive" width="175px;" />
+          <span class="title-item">{!! $item->TenSP !!}</span>
+          <p class="price-sale">{!! number_format($item->Gia,0,',','.') !!}&nbsp;đ
+            <span class="label label-warning">-2%</span>
+            <span class="price-regular">12.490.000&nbsp;đ</span>
+          </p>
+        </a>
+      </div>
+      @endforeach
+    <!-- end sản phẩm -->
+ @else
+    <?php echo "khong co san pham"; ?>
+  @endif
+    
+    <!-- ket thuc phan trang -->    
+    </div>
+  </div>
+ <div class="phantrang">
+      <ul class="pagination">
+          @if($product_cate->currentPage() != 1)
+          <li ><a href="{{ $product_cate->url($product_cate->currentPage() - 1) }}">&laquo;</a></li>
+          @endif
+          @for($i=1;$i <= $product_cate->lastPage();$i++)
+          <li class="{{ ($product_cate->currentPage() == $i) ? 'active' : '' }}"><a href="{{ $product_cate->url($i) }}">{{ $i }}</a></li>
+          @endfor
+          @if($product_cate->currentPage() != $product_cate->lastPage())
+          <li><a href="{{ $product_cate->url($product_cate->currentPage() + 1) }}">&raquo;</a></li>
+          @endif
+      </ul>
+    </div>
+  <!-- kết thúc liệt kê -->
 </div>
 @endsection

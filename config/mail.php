@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
     | This is the SMTP port used by your application to deliver e-mails to
     | users of the application. Like the host we have set this value to
     | stay compatible with the Mailgun e-mail application by default.
-    |
+    |gmail 587 and 468
     */
 
     'port' => env('MAIL_PORT', 587),
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'tieuyentu0987@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
@@ -68,7 +68,7 @@ return [
     | Here you may specify the encryption protocol that should be used when
     | the application send e-mail messages. A sensible default using the
     | transport layer security protocol should provide great security.
-    |
+    |cua gmail sls and tls
     */
 
     'encryption' => env('MAIL_ENCRYPTION', 'tls'),

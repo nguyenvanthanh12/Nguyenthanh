@@ -15,6 +15,8 @@ Route::group(['prefix' => '/', 'namespace' => 'FrontEnd'], function(){
 	Route::get('/', 'FrontEndController@index')->name('index');
 	Route::get('loai-san-pham/{id}/{TenKhongDau}', 'FrontEndController@getCate')->name('getCate')->where('id', '[0-9]+');
 	Route::get('chi-tiet-san-pham/{id}/{TenKhongDau}', 'FrontEndController@getDetail')->name('getDetail')->where('id', '[0-9]+');
+	Route::get('lien-he', 'FrontEndController@getLienhe')->name('getLienhe');
+	Route::post('lien-he', 'FrontEndController@postLienhe')->name('postLienhe');
 });
 
 
