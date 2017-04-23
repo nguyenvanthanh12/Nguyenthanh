@@ -8,9 +8,10 @@ use App\Http\Requests\productRequest;
 use App\Http\Requests\EditProduct;
 use App\Models\product;
 use App\Models\Cate;
-use App\Models\Even1;
 use App\Models\parameter;
 use App\Models\detailPara;
+use App\Models\Even1;
+use App\Models\ctspkm;
 use App\Models\productImage;
 use dateTime,Request;
 use Input,File,DB;
@@ -23,10 +24,10 @@ class productController extends Controller
     }
 
     public function getProductAdd(){
+        $spkm = Even1::select('id','Ten')->get()->toArray();
         $para = parameter::select('id','Ten')->get()->toArray();
     	$cate = Cate::select('id','Ten','parent_id')->get()->toArray();
-    	$event = Even1::select('id','Ten','trangthai')->get()->toArray();
-    	return view('admin.modules.sanpham.add',['para' => $para,'cate' => $cate, 'event' => $event]);
+    	return view('admin.modules.sanpham.add',['para' => $para,'cate' => $cate,'spkm' => $spkm]);
     }
 
     public function postProductAdd(productRequest $Request){
@@ -36,13 +37,14 @@ class productController extends Controller
         $product->TenSP       =   $Request->TenSP;
         $product->TenKhongDau =   str_slug($Request->TenSP);
         $product->Gia         =   $Request->Gia;
+        $product->GiamGia     =   $Request->GiamGia;
+        $product->soluong     =   $Request->soluong;
         $product->AnhChinh    =   $file_name;
         if(strlen($file_name) >0) {
             $Request->file('fImages')->move('upload/product/',$file_name);
         }
         $product->NoiDung     =   $Request->NoiDung;
         $product->BaoHanh     =   $Request->BaoHanh;
-        $product->idKM        =   $Request->idKM;
         $product->idLSP       =   $Request->idLSP;
         $product->created_at  =   new dateTime();
         $product->save();
@@ -58,18 +60,35 @@ class productController extends Controller
                 }
             }
         }
-        if(isset($Request->parameter)){
-            foreach ($Request->parameter as $param) {
-                $detailPara = new detailPara;
-                if(isset($param)){
-                    $detailPara->idTS =  $param;
-                    $detailPara->product_id =   $product_id;
-                    $detailPara->save();
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            foreach ($_POST as $key => $value) {
+                if(isset($value)){
+                    if(preg_match("/^parameter_.{1,}$/",$key)){
+                        $idTS = substr($key, 10);
+                        $detailPara = new detailPara;
+                        $detailPara->idTS       =   $idTS;
+                        $detailPara->product_id =   $product_id;
+                        $detailPara->ctTS       =   $value;
+                        $detailPara->created_at = new dateTime();
+                        $detailPara->save();
+                    }
+                }
+            }
+        }
+
+        if(isset($Request->spkm)){
+            foreach ($Request->spkm as $spkm) {
+                $ctspkm = new ctspkm;
+                if(isset($spkm)){
+                    $ctspkm->idKM =  $spkm;
+                    $ctspkm->product_id =   $product_id;
+                    $ctspkm->save();
                 }
             }
         }
 
         return redirect()->route('getProductList')->with(['flash_level' => 'success', 'flash_message' => 'Thêm sản phẩm thành công !']);
+        
     }
 
     public function getProductDel($id){
@@ -87,10 +106,9 @@ class productController extends Controller
     public function getProductEdit($id){
         $para = parameter::select('id','Ten')->get()->toArray();
         $cate = Cate::select('id','Ten','parent_id')->get()->toArray();
-        $event = Even1::select('id','Ten','trangthai')->get()->toArray();
         $product = product::find($id);
         $prImg = product::find($id)->Image;
-        return view('admin.modules.sanpham.edit',['para' => $para,'cate' => $cate, 'event' => $event,'product' => $product,'prImg' => $prImg]);
+        return view('admin.modules.sanpham.edit',['para' => $para,'cate' => $cate,'product' => $product,'prImg' => $prImg]);
     }
 
     public function postProductEdit(EditProduct $Request,$id){
@@ -110,6 +128,8 @@ class productController extends Controller
         $product->TenSP       =   $Request->TenSP;
         $product->TenKhongDau =   str_slug($Request->TenSP);
         $product->Gia         =   $Request->Gia;
+        $product->GiamGia     =   $Request->GiamGia;
+        $product->soluong     =   $Request->soluong;
         /*if(strlen($file_name2) >0) {
             
             if(file_exists(public_path().'/upload/product/'.$fImageCurrent)){
@@ -120,7 +140,6 @@ class productController extends Controller
          }*/
         $product->NoiDung     =   $Request->NoiDung;
         $product->BaoHanh     =   $Request->BaoHanh;
-        $product->idKM        =   $Request->idKM;
         $product->idLSP       =   $Request->idLSP;
         $product->updated_at  =   new dateTime();
         $product->save();
@@ -136,13 +155,29 @@ class productController extends Controller
             }
             
         }
-        if (isset($Request->parameter)) {
-            foreach ($Request->parameter as $param) {
-                $detailPara = new detailPara;
-                if(isset($param)){
-                    $detailPara->idTS =  $param;
-                    $detailPara->product_id =   $id;
-                    $detailPara->save();
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            foreach ($_POST as $key => $value) {
+                if(isset($value)){
+                    if(preg_match("/^parameter_.{1,}$/",$key)){
+                        $idTS = substr($key, 10);
+                        $detailPara = new detailPara;
+                        $detailPara->idTS       =   $idTS;
+                        $detailPara->product_id =   $product_id;
+                        $detailPara->ctTS       =   $value;
+                        $detailPara->created_at = new dateTime();
+                        $detailPara->save();
+                    }
+                }
+            }
+        }
+
+        if(isset($Request->spkm)){
+            foreach ($Request->spkm as $spkm) {
+                $ctspkm = new ctspkm;
+                if(isset($spkm)){
+                    $ctspkm->idKM =  $spkm;
+                    $ctspkm->product_id =   $product_id;
+                    $ctspkm->save();
                 }
             }
         }

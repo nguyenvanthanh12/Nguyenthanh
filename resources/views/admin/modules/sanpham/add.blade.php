@@ -7,23 +7,7 @@
     <div class="col-lg-6" style="padding-bottom:120px">
     @include('admin.blocks.error')
     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-        <div class="form-group">
-            <label>Chương trình khuyến mãi:</label>
-            <select name="idKM" class="form-control">
-                <option value="">--Chọn--</option>
-                <?php
-                $select = old('idKM');
-                    foreach ($event as $value) {
-                        if($select != 0 && $value['id'] == $select){
-                            echo '<option value="'.$value['id'].'" selected>'.$value['Ten'].'</option>';    
-                        }else{
-                            echo '<option value="'.$value['id'].'" >'.$value['Ten'].'</option>';    
-                        }
-                        
-                    }
-                ?>
-            </select>
-        </div>
+        
         <div class="form-group">
             <label>Thư mục cha:</label>
             <select name="idLSP" class="form-control">
@@ -44,6 +28,22 @@
             <input type="text" name="Gia" class="form-control" value="{!! old('Gia') !!}">
         </div>
         <div class="form-group">
+            <label>Giảm Giá: (%)</label>
+            <input type="text" name="GiamGia" class="form-control" value="{!! old('GiamGia') !!}">
+        </div>
+         <div class="form-group">
+            <label>Sản phẩm tặng kèm: </label>
+            <select class="form-control select-multiple" multiple="multiple" name="spkm[]">
+            @foreach($spkm as $val)
+              <option value="<?php echo $val['id'] ?>"><?php echo $val['Ten'] ?></option>
+            @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Số lượng:</label>
+            <input type="text" name="soluong" class="form-control" value="{{ old('soluong') }}">
+        </div>
+        <div class="form-group">
             <label>Images</label>
             <input type="file" name="fImages">
         </div>
@@ -58,15 +58,6 @@
             <input class="form-control" name="BaoHanh" value="{!! old('BaoHanh') !!}" />
         </div>
         
-        <div class="form-group">
-            <label>Trạng thái:</label>
-            <label class="radio-inline">
-                <input name="rdoStatus" value="1" checked="" type="radio">Cón hàng
-            </label>
-            <label class="radio-inline">
-                <input name="rdoStatus" value="0" type="radio">Hết hàng
-            </label>
-        </div>
         <button type="submit" class="btn btn-default">Thêm</button>
         <button type="reset" class="btn btn-default">Reset</button>
     </div>
@@ -78,14 +69,13 @@
             <input type="file" name="fproductdetail[]">
         </div>
         @endfor
+       
+        @foreach($para as $val)
         <div class="form-group">
-            <label>Thông số: </label>
-            <select class="form-control select-multiple" multiple="multiple" name="parameter[]">
-            @foreach($para as $val)
-              <option value="<?php echo $val['id'] ?>"><?php echo $val['Ten'] ?></option>
-            @endforeach
-            </select>
+            <label>{{ $val['Ten'] }}: </label>
+            <input class="form-control" type="text" value="" name="parameter_{{ $val['id'] }}">
         </div>
+        @endforeach
     </div>
 <form>
 @endsection

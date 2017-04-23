@@ -7,23 +7,6 @@
     @include('admin.blocks.error')
     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
         <div class="form-group">
-            <label>Chương trình khuyến mãi:</label>
-            <select name="idKM" class="form-control">
-                <option value="">--Chọn--</option>
-                <?php
-                $select = $product['idKM'];
-                    foreach ($event as $value) {
-                        if($select != 0 && $value['id'] == $select){
-                            echo '<option value="'.$value['id'].'" selected>'.$value['Ten'].'</option>';    
-                        }else{
-                            echo '<option value="'.$value['id'].'" >'.$value['Ten'].'</option>';    
-                        }
-                        
-                    }
-                ?>
-            </select>
-        </div>
-        <div class="form-group">
             <label>Thư mục cha:</label>
             <select name="idLSP" class="form-control">
                 <option value="">--Chọn--</option>
@@ -41,6 +24,14 @@
         <div class="form-group">
             <label>Giá:</label>
             <input type="text" name="Gia" class="form-control" value="{!! old('Gia',isset($product) ? $product['Gia'] : null) !!}">
+        </div>
+        <div class="form-group">
+            <label>Giảm Giá: (%)</label>
+            <input type="text" name="GiamGia" class="form-control" value="{!! old('GiamGia', isset($product) ? $product['GiamGia'] : null) !!}">
+        </div>
+        <div class="form-group">
+            <label>Số lượng:</label>
+            <input type="text" name="soluong" class="form-control" value="{{ old('soluong', isset($product) ? $product['soluong'] : null) }}">
         </div>
         <div class="form-group">
             <label>Hình hiện tại</label>
@@ -84,17 +75,16 @@
         @endforeach
         <button type="button" class="btn btn-primary" id="addImg">Thêm ảnh</button>
         <div id="insert"></div>
-        <div class="form-group" style="padding-top: 15px;">
-            <label>Thông số: </label>
-            <select class="form-control select-multiple" multiple="multiple" name="parameter[]">
-            <?php //$DetailPara = DB::table('ts_loaithongso')->where('product_id', '=', $product['id']) 
-
+        <?php
+                $paraDetail = DB::table('ts_loaithongso')->where('product_id',$product['id'])->get();
+                
             ?>
-            @foreach($para as $val)
-              <option value="<?php echo $val['id'] ?>"><?php echo $val['Ten'] ?></option>
-            @endforeach
-            </select>
+        @foreach($para as $val)
+        <div class="form-group">
+            <label>{{ $val['Ten'] }}: </label>
+            <input class="form-control" type="text" value="" name="parameter_{{ $val['id'] }}">
         </div>
+        @endforeach
     </div>
 <form>
 @endsection

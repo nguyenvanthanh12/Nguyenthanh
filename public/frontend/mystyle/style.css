@@ -71,6 +71,7 @@
 }
 .logo, .giohang { margin-top: 10px; }
 .xinchao { float: right; }
+.xinchao a { color: #fff; }
 .thongso .parameter ul li { margin-left: 15px; padding: 5px;  }
 .thongso { padding-top: 10px; }
 .gio-hang { padding-top: 15px; }
@@ -348,3 +349,6 @@ padding:0 20px
 .cloud-zoom-big { border:2px solid #fff; overflow:hidden; }
 /* This is the loading message. */
 .cloud-zoom-loading { color:white; background:#222; padding:3px; border:1px solid #999999; }
+div.login a {
+  display: block; text-decoration: none;color: #fff;
+}

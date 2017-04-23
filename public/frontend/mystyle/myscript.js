@@ -26,3 +26,6 @@ $(document).ready(function(){
     $('div.sanpham div.fade:first-of-type').addClass('in active');
     $('div.alert').delay(2500).slideUp();
 });
+$(document).ready(function(c) {
+	  
+});

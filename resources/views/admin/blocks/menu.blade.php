@@ -26,6 +26,16 @@
                 </a>
             </li>
             <li>
+            <?php 
+                $order = DB::table('ts_dondathang')->select('id','trangthai')->where('trangthai',0)->get();
+            ?>
+                <a href="{!! route('getListOrder') !!}" ><i class="fa fa-reorder fa-fw"></i> Đơn hàng 
+                    @if(count($order) > 0)
+                    <span class="badge" style="background: red;">{{ count($order) }}</span>
+                    @endif
+                </a>
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Loại sản phẩm<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
@@ -63,13 +73,16 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-gift fa-fw"></i> Khuyến mại loại 1<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-gift fa-fw"></i> Sự kiện khuyến mại<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ route('getEvent1List') }}">Danh sách</a>
+                        <a href="{{ route('getEventList') }}">Danh sách</a>
                     </li>
                     <li>
-                        <a href="{!! route('getEvent1Add') !!}">Thêm</a>
+                        <a href="{!! route('getEventAdd') !!}">Thêm</a>
+                    </li>
+                    <li>
+                        <a href="{!! route('getEvent1List') !!}">Sản phẩm khuyến mại</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

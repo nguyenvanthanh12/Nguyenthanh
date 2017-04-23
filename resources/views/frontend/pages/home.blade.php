@@ -53,7 +53,7 @@
               <div class="grid_1 simpleCart_shelfItem">
               
               <div class="item_add"><span class="item_price"><h6>{!! number_format($item->Gia,0,',','.') !!}&nbsp;đ</h6></span></div>
-              <div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
+              <div class="item_add"><span class="item_price"><a href="{{ url('mua-hang/'.$item->id.'/'.$item->TenKhongDau) }}">Mua ngay</a></span></div>
              </div>
             </div>
           </div>

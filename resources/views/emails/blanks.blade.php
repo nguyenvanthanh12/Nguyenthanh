@@ -1,4 +1,9 @@
-<h4>Email : </h3>{!! $email !!}
-<h3>Họ Tên : </h3>{{ $HoTen }}
-<h5>Tóm tắt : </h5>{{ $TieuDe }}
-<p>Nội dung : </p>{{ $NoiDung }}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kích hoạt tài khoản</title>
+</head>
+<body>
+<h4>Cảm ơn bạn dã đăng ký tài khoản ! Bạn hãy click vào link sau để kích hoạt tài khoản:</h4>
+</body>
+</html>

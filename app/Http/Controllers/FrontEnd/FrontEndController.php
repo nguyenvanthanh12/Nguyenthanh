@@ -5,7 +5,9 @@ namespace App\Http\Controllers\FrontEnd;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
-use DB,Mail,dateTime;
+use App\Models\ct_DH;
+use App\Models\Dondathang;
+use DB,Mail,dateTime,Cart,Auth;
 
 class FrontEndController extends Controller
 {
@@ -53,10 +55,10 @@ class FrontEndController extends Controller
             ]
         );
         $data = ['HoTen' => $Request->HoTen,'email' => $Request->email,'TieuDe' => $Request->TieuDe,'NoiDung' => $Request->NoiDung];
-        Mail::send('emails.blanks',$data,function($msg){
+        /*Mail::send('emails.blanks',$data,function($msg){
             $msg->from('tieuyentu1231@gmail.com','ThanhNguyen');
             $msg->to('tieuyentu0987@gmail.com','NguyenThanh')->subject('test mail');
-        });
+        });*/
         $contact = new Contact;
         $contact->TieuDe    =   $Request->TieuDe;
         $contact->NoiDung   =   $Request->NoiDung;
@@ -69,4 +71,51 @@ class FrontEndController extends Controller
              window.location = '".URL('/')."'
              </script>";
     }
+
+    public function getShopping($id){
+        $shopping = DB::table('ts_sanpham')->where('id',$id)->first();
+        Cart::add(['id' => $id, 'name' => $shopping->TenSP, 'qty' => 1, 'price' => $shopping->Gia, 'options' => ['img' => $shopping->AnhChinh,'TKD' => $shopping->TenKhongDau]]);
+        $content = Cart::content();
+        return redirect()->route('getGiohang');
+    }
+
+    public function getGiohang(){
+        $content = Cart::content();
+
+        return view('frontend.pages.checkout',compact('content'));
+    }
+
+    public function postGiohang(Request $rq){
+        $order = new Dondathang;
+        $order->idUser      =   Auth::user()->id;
+        $order->NgayDatHang =   new dateTime();
+        $order->GhiChu      =   $rq->GhiChu;
+        $order->TrangThai   =   0;
+        $order->created_at  =   new dateTime();
+        $order->save();
+
+        $idDh = $order->id;
+        $content = Cart::content();
+        foreach ($content as $val) {
+            $detailOrder = new ct_DH;
+            $detailOrder->idDDH =   $idDh;
+            $detailOrder->idSP  =   $val->id;
+            $detailOrder->SLDat =   $val->qty;
+            $detailOrder->Gia   =   $val->price*$val->qty;
+            $detailOrder->save();
+        }
+
+        echo "<script>
+             alert('Cám ơn bạn đã mua hàng của chúng tôi ! Chúng tôi sẽ gửi hàng tới bạn trong thời gian sớm nhất.');
+             window.location = '".URL('/')."'
+             </script>";
+
+    }
+
+    public function getDel($id){
+        Cart::remove($id);
+        return redirect()->route('getGiohang')->with(['flash_level' => 'success', 'flash_message' => 'xóa sản phẩm thành công !']);
+    }
+
+ 
 }

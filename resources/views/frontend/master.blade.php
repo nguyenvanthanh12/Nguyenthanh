@@ -20,6 +20,7 @@
 <button onclick="topFunction()" id="myBtn" title="Go to top">
   <img src="{!! asset('public/frontend/img/back-to-top.png') !!}" />
 </button>
+
 <!-- header -->
 @include('frontend.blocks.header')
 <!-- end header -->

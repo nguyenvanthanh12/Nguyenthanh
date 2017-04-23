@@ -2,7 +2,7 @@
       <div class="col-md-3 menu navbar-header">
         <div class="categories" onmousemove="hover()" onmouseleave="poiterout()">
           <div class="categories_show">
-            <h5 >
+            <h5 style="padding-top: 12px;">
               <span class="glyphicon glyphicon-tasks" style="padding-right: 5px;"></span>
               DANH MỤC SẢN PHẨM
             </h5>
@@ -30,7 +30,7 @@
                         Nhà sản xuất
                         
                       </a>
-                      <div class="effect-text" style="border-right: 1px solid #ccc">
+                      <div class="effect-text">
                         <?php
                           $menu_level_2 = DB::table('ts_loaisanpham')->where('parent_id',$item1->id)->get();
                         ?>
@@ -39,16 +39,7 @@
                         @endforeach
                       </div>
                     </li>
-                    <li style="height: auto;">
-                      <a href="#" style="font-size: 130%;line-height: 28px;">
-                        Hệ điều hành
-                        
-                      </a>
-                      <div class="effect-text">
-                        <a href="" style="padding: 6px"><span class="glyphicon glyphicon-chevron-right"></span> Windowns</a>
-                        <a href="" style="padding: 6px"><span class="glyphicon glyphicon-chevron-right"></span> MacOS</a>
-                      </div>
-                    </li>
+                    
                     
                     <script type="text/javascript">
                       function poiterout(){
@@ -64,14 +55,23 @@
         </div>
       </div>
       
-      <div class="col-md-9 navbar-collapse collapse" id="menu">
+      <div class="col-md-6 navbar-collapse collapse" id="menu">
         <ul class="nav navbar-nav">
           <li><a href="">Giới thiệu</a></li>
           <li><a href="{!! url('lien-he') !!}">Thông tin liên hệ</a></li>
           <li><a href="">Khuyến mại</a></li>
           <li><a href="">Chăm sóc khách hàng</a></li>
-          <li><a href="">Đăng ký</a></li>
-          <li><a href="">Đăng nhập</a></li>
         </ul>
+        
       </div>
+      @if(Auth::check())
+      <div class="col-md-3" style="color: #fff; padding-top: 15px; padding-left: 40px;">
+        <span>Xin chào: </span><small><i style="color: red;">{!! Auth::user()->HoTen !!} - <a href="{!! url('dang-xuat') !!}" style="color: #fff;">Thoát</a></i></small>
+      </div>
+      @else
+      <div class="col-md-3 login" style="color: #fff; padding-top: 5px;">
+        <a href="{!! url('dang-ky') !!}">Đăng ký</a> |
+        <a href="{!! url('dang-nhap') !!}">Đăng nhập</a>
+      </div>
+      @endif
     </div>

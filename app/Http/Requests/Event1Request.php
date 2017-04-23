@@ -24,20 +24,20 @@ class Event1Request extends FormRequest
     public function rules()
     {
         return [
-            'Ten'       =>  'required',
-            'HinhThuc'  =>  'required',
-            'igmEven'   =>  'required',
-            'NgayBatDau'=>  'required',
-            'NgayKetThuc'=> 'required'
+            'Ten'     =>  'required',
+            'soluong' =>  'required|regex:/[0-9]/',
+            'idSK'    =>  'required',
+            'igmEven' =>  'required'
         ];
     }
 
     public function messages(){
         return [
-            'Ten.required'          =>  'Bạn chưa nhập tên cho sự kiện',
-            'igmEven.required'      =>  'Bạn chưa chọn hình đại diện',
-            'HinhThuc.required'     =>  'Bạn chưa nhập hình thức diễn ra sự kiện',
-            'NgayBatDau.required'   =>  'Bạn chưa nhập ngày bắt đầu sự kiện'
+            'Ten.required'     =>  'Bạn chưa nhập tên cho sự kiện',
+            'igmEven.required' =>  'Bạn chưa chọn hình đại diện',
+            'idSK.required'    =>  'Bạn chưa chọn chương trình khuyến mại',
+            'soluong.required' =>  'Bạn chưa nhập số lượng sản phẩm',
+            'soluong.regex'    =>  'Số lượng sản phẩm phải là số và nguyên dương'
         ];
     }
 }

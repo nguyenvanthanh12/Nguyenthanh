@@ -14,11 +14,15 @@ class product extends Model
     }
 
     public function Event(){
-    	return $this->belongsTo('App\Models\Even1');
+    	return $this->belongsToMany('App\Models\Even1');
     }
 
     public function Image(){
     	return $this->hasMany('App\Models\productImage');
+    }
+
+    public function ctspkm(){
+        return $this->hasMany('App\Models\ctspkm');
     }
 
     public function DetailPara(){

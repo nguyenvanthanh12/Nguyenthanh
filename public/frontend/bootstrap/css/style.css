@@ -20,6 +20,9 @@ body a{
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
 }
+div.login a {
+  display: inline-block; color: #fff; padding: 10px;
+}
 /*----*/
 .itemContainer{
 			width:100%;
@@ -139,7 +142,6 @@ body a{
 } 
 
 .close1,.close2{
-  background: url('../images/close_1.png') no-repeat 0px 0px;
   cursor: pointer;
   width: 28px;
   height: 28px;

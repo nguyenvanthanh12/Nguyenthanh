@@ -17,6 +17,15 @@ Route::group(['prefix' => '/', 'namespace' => 'FrontEnd'], function(){
 	Route::get('chi-tiet-san-pham/{id}/{TenKhongDau}', 'FrontEndController@getDetail')->name('getDetail')->where('id', '[0-9]+');
 	Route::get('lien-he', 'FrontEndController@getLienhe')->name('getLienhe');
 	Route::post('lien-he', 'FrontEndController@postLienhe')->name('postLienhe');
+	Route::get('mua-hang/{id}/{TenKhongDau}', 'FrontEndController@getShopping')->name('getShopping');
+	Route::get('gio-hang', 'FrontEndController@getGiohang')->name('getGiohang');
+	Route::post('gio-hang', 'FrontEndController@postGiohang')->name('postGiohang');
+	Route::get('xoa-san-pham/{id}', 'FrontEndController@getDel')->name('getDel');
+	Route::get('dang-ky', 'RegisterController@getRegister')->name('getRegister');
+	Route::post('dang-ky', 'RegisterController@postRegister')->name('postRegister');
+	Route::get('dang-nhap', 'RegisterController@getLogin')->name('getLogin');
+	Route::post('dang-nhap', 'RegisterController@postLogin')->name('postLogin');
+	Route::get('dang-xuat', 'RegisterController@getDangxuat')->name('getDangxuat');
 });
 
 
@@ -48,7 +57,17 @@ Route::group(['middleware' => 'auth'], function () {
     		route::get('sua/{id}', 'CateController@getCateEdit')->name('getCateEdit')->where('id', '[0-9]+');
     		Route::post('sua/{id}', 'CateController@postCateEdit')->name('postCateEdit')->where('id', '[0-9]+');
     	});
-    	Route::group(['prefix' => 'khuyenmailoai1'],function(){
+
+    	Route::group(['prefix' => 'su-kien-khuyen-mai'],function(){
+    		Route::get('danh-sach', 'EventController@getEventList')->name('getEventList');
+    		Route::get('them', 'EventController@getEventAdd')->name('getEventAdd');
+    		Route::post('them', 'EventController@postEventAdd')->name('postEventAdd');
+    		Route::get('xoa/{id}', 'EventController@getEventDelete')->name('getEventDelete')->where('id', '[0-9]+');
+    		route::get('sua/{id}', 'EventController@getEventEdit')->name('getEventEdit')->where('id', '[0-9]+');
+    		Route::post('sua/{id}', 'EventController@postEventEdit')->name('postEventEdit')->where('id', '[0-9]+');
+    	});
+
+    	Route::group(['prefix' => 'san-pham-khuyen-mai'],function(){
     		Route::get('danhsach', 'Event1Controll@getEvent1List')->name('getEvent1List');
     		Route::get('them', 'Event1Controll@getEvent1Add')->name('getEvent1Add');
     		Route::post('them', 'Event1Controll@postEvent1Add')->name('postEvent1Add');
@@ -84,6 +103,11 @@ Route::group(['middleware' => 'auth'], function () {
     	Route::group(['prefix' => 'lienhe'],function(){
     		Route::get('danhsach', 'ContactController@getContactList')->name('getContactList');
     		Route::get('setting/{id}', 'ContactController@getSetting')->name('getSetting')->where('id', '[0-9]+');
+    	});
+    	Route::group(['prefix' => 'don-hang'],function(){
+    		Route::get('danhsach', 'OrderController@getListOrder')->name('getListOrder');
+    		Route::get('order-setting/{id}', 'OrderController@getOrderSt')->name('getOrderSt')->where('id', '[0-9]+');
+    		Route::get('chi-tiet-don-hang/{id}', 'OrderController@getDetailOrder')->name('getDetailOrder')->where('id', '[0-9]+');
     	});
     });
 });

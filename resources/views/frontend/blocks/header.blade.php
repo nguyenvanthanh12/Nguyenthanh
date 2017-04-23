@@ -21,15 +21,15 @@
       <!-- ***** giỏ hàng và thành viện ***** -->
       <div class="giohang col-md-3">
         <div id="header-car">
-          <a href="" title="">
+          <a href="{!! url('gio-hang') !!}" title="">
             <i class="fa fa-shopping-cart fa-2x"></i> 
             <span>Giỏ hàng</span>
-            <span class="badge">0</span>
+            
           </a>
         </div>
-        <div class="xinchao">
-          <span class="glyphicon glyphicon-user"></span>
-        </div>
+        
+        
+
       </div>  <!-- end giỏ hàng  -->
 
     </div>  <!-- end banner -->
