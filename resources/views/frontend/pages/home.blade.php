@@ -10,8 +10,10 @@
 <!-- Begin content -->
 <div class="container">
   <div class="bl-quangcao col-md-12">
-    <img src="public/img/quangcao/blqc1.png" />
-    <img src="public/img/quangcao/blqc2.jpg" class="img-responsive" />
+    <?php $slide = DB::table('ts_quangcao')->where('ViTri',1)->orderBy('id','DESC')->skip(0)->take(2)->get(); ?>
+    @foreach($slide as $slide)
+    <img src="{!! asset('public/upload/quangcao/'.$slide->Anh) !!}" class="img-responsive" />
+    @endforeach
   </div>
 <!-- end quảng cáo -->
 <?php

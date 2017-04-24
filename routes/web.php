@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
     	Route::get('/',function(){
     		return view('admin.blocks.thongke');
     	});
-    	Route::group(['prefix' => 'loaisanpham'],function(){
+    	Route::group(['prefix' => 'loai-san-pham'],function(){
     		Route::get('them', 'CateController@getCateAdd')->name('getCateAdd');
     		Route::post('them', 'CateController@postCateAdd')->name('postCateAdd');
     		route::get('danhsach', 'CateController@getCateList')->name('getCateList');
@@ -75,7 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
     		route::get('sua/{id}', 'Event1Controll@getEvent1Edit')->name('getEvent1Edit')->where('id', '[0-9]+');
     		Route::post('sua/{id}', 'Event1Controll@postEvent1Edit')->name('postEvent1Edit')->where('id', '[0-9]+');
     	});
-    	Route::group(['prefix' => 'taikhoan'],function(){
+    	Route::group(['prefix' => 'tai-khoan'],function(){
     		Route::get('danhsach', 'UserController@getUserList')->name('getUserList');
     		Route::get('them', 'UserController@getUserAdd')->name('getUserAdd');
     		Route::post('them', 'UserController@postUserAdd')->name('postUserAdd');
@@ -83,7 +83,7 @@ Route::group(['middleware' => 'auth'], function () {
     		route::get('sua/{id}', 'UserController@getUserEdit')->name('getUserEdit')->where('id', '[0-9]+');
     		Route::post('sua/{id}', 'UserController@postUserEdit')->name('postUserEdit')->where('id', '[0-9]+');
     	});
-    	Route::group(['prefix' => 'sanpham'],function(){
+    	Route::group(['prefix' => 'san-pham'],function(){
     		Route::get('danhsach', 'productController@getProductList')->name('getProductList');
     		Route::get('them', 'productController@getProductAdd')->name('getProductAdd');
     		Route::post('them', 'productController@postProductAdd')->name('postProductAdd');
@@ -92,7 +92,7 @@ Route::group(['middleware' => 'auth'], function () {
     		Route::post('sua/{id}', 'productController@postProductEdit')->name('postProductEdit')->where('id', '[0-9]+');
     		Route::get('delImg/{id}', 'productController@getDelImg')->name('getDelImg');
     	});
-    	Route::group(['prefix' => 'thongso'],function(){
+    	Route::group(['prefix' => 'thong-so'],function(){
     		Route::get('themthongso', 'parameterController@getparaadd')->name('getparaadd');
     		Route::post('themthongso', 'parameterController@postparaadd')->name('postparaadd');
     		Route::get('danhsach', 'parameterController@getParaList')->name('getParaList');
@@ -100,7 +100,7 @@ Route::group(['middleware' => 'auth'], function () {
     		route::get('sua/{id}', 'parameterController@getParaEdit')->name('getParaEdit')->where('id', '[0-9]+');
     		Route::post('sua/{id}', 'parameterController@postParaEdit')->name('postParaEdit')->where('id', '[0-9]+');
     	});
-    	Route::group(['prefix' => 'lienhe'],function(){
+    	Route::group(['prefix' => 'lien-he'],function(){
     		Route::get('danhsach', 'ContactController@getContactList')->name('getContactList');
     		Route::get('setting/{id}', 'ContactController@getSetting')->name('getSetting')->where('id', '[0-9]+');
     	});
@@ -108,6 +108,15 @@ Route::group(['middleware' => 'auth'], function () {
     		Route::get('danhsach', 'OrderController@getListOrder')->name('getListOrder');
     		Route::get('order-setting/{id}', 'OrderController@getOrderSt')->name('getOrderSt')->where('id', '[0-9]+');
     		Route::get('chi-tiet-don-hang/{id}', 'OrderController@getDetailOrder')->name('getDetailOrder')->where('id', '[0-9]+');
+    	});
+
+    	Route::group(['prefix' => 'quang-cao'],function(){
+    		Route::get('danh-sach', 'AdvertisementController@getAdvList')->name('getAdvList');
+    		Route::get('them', 'AdvertisementController@getAdvAdd')->name('getAdvAdd');
+    		Route::post('them', 'AdvertisementController@postAdvAdd')->name('postAdvAdd');
+    		Route::get('xoa/{id}', 'AdvertisementController@getAdvDel')->name('getAdvDel')->where('id', '[0-9]+');
+    		route::get('sua/{id}', 'AdvertisementController@getAdvEdit')->name('getAdvEdit')->where('id', '[0-9]+');
+    		Route::post('sua/{id}', 'AdvertisementController@postAdvEdit')->name('postAdvEdit')->where('id', '[0-9]+');
     	});
     });
 });
