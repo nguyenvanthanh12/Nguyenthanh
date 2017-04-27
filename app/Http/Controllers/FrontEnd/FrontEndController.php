@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use App\Models\product;
 use App\Models\ct_DH;
 use App\Models\Dondathang;
 use DB,Mail,dateTime,Cart,Auth;
@@ -17,16 +18,20 @@ class FrontEndController extends Controller
 	}
 
     public function getCate($id){
-    	$product_cate = DB::table('ts_sanpham')->select('id','TenSP','TenKhongDau','Gia','AnhChinh','idLSP')->where('idLSP',$id)->paginate(12);
+    	$product_cate = DB::table('ts_sanpham')->select('id','TenSP','TenKhongDau','Gia','AnhChinh','GiamGia','idLSP')->where('idLSP',$id)->paginate(8);
     	//$product_cate[0]->idLSP  Lấy ra cate đang chọn
         if (count($product_cate) > 0) {
-            $cate = DB::table('ts_loaisanpham')->select('Ten','parent_id')->where('id',$product_cate[0]->idLSP)->first();
+            $cate = DB::table('ts_loaisanpham')->select('id','Ten','parent_id')->where('id',$product_cate[0]->idLSP)->first();
             $menu_cate = DB::table('ts_loaisanpham')->select('id','Ten','TenKhongDau')->where('id',$cate->parent_id)->first();
+            $product_gia1 = DB::table('ts_sanpham')->select('id','TenSP','TenKhongDau','Gia','AnhChinh','GiamGia','idLSP')->where('idLSP',$id)->whereBetween('Gia', [1, 8000000])->paginate(8);
+            $product_gia2 = DB::table('ts_sanpham')->select('id','TenSP','TenKhongDau','Gia','AnhChinh','GiamGia','idLSP')->where('idLSP',$id)->whereBetween('Gia', [8000000, 15000000])->paginate(8);
+            $product_gia3 = DB::table('ts_sanpham')->select('id','TenSP','TenKhongDau','Gia','AnhChinh','GiamGia','idLSP')->where('idLSP',$id)->whereBetween('Gia', [15000000, 25000000])->paginate(8);
+            $product_gia4 = DB::table('ts_sanpham')->select('id','TenSP','TenKhongDau','Gia','AnhChinh','GiamGia','idLSP')->where('idLSP',$id)->where('Gia', '>=', 25000000)->paginate(8);
         }
     	else{ return redirect()->route('index'); }
     	//$lastest = DB::table('ts_sanpham')->select('id','TenSP','TenKhongDau','Gia','AnhChinh','BaoHanh')->where('idLSP',$id)->orderBy('id','DESC')->take(3)->get();
     	//$name_cate = DB::table('ts_loaisanpham')->select('Ten')->where('id',$id)->first();
-    	return view('frontend.pages.cate',['product_cate' => $product_cate,'cate' => $cate,'menu_cate' => $menu_cate]);
+    	return view('frontend.pages.cate',compact('product_cate','cate','menu_cate','product_gia1','product_gia2','product_gia3','product_gia4'));
     }
 
     public function getDetail($id){
@@ -35,7 +40,10 @@ class FrontEndController extends Controller
         $cate = DB::table('ts_loaisanpham')->select('id','Ten','parent_id')->where('id',$product_detail->idLSP)->first();
         $menu_cate = DB::table('ts_loaisanpham')->select('id','Ten','parent_id')->where('id',$cate->parent_id)->first();
         $product_cate = DB::table('ts_sanpham')->where('idLSP',$product_detail->idLSP)->where('id','<>',$id)->take(4)->get();
-    	return view('frontend.pages.product',['product_detail' => $product_detail,'imgDetail' => $imgDetail,'product_cate' =>$product_cate,'cate' => $cate,'menu_cate' => $menu_cate]);
+        $paraDetail = DB::table('ts_loaithongso')->select('idTS','product_id','ctTS')->where('product_id',$id)->where('ctTS','<>','')->get();
+        $DetailEvent = DB::table('ts_ctspkm')->select('idKM','product_id')->where('product_id',$id)->get();
+        
+    	return view('frontend.pages.product',['product_detail' => $product_detail,'imgDetail' => $imgDetail,'product_cate' =>$product_cate,'cate' => $cate,'menu_cate' => $menu_cate,'paraDetail' => $paraDetail,'DetailEvent' => $DetailEvent]);
     }
 
     public function getLienhe(){
@@ -117,5 +125,16 @@ class FrontEndController extends Controller
         return redirect()->route('getGiohang')->with(['flash_level' => 'success', 'flash_message' => 'xóa sản phẩm thành công !']);
     }
 
+    public function postSearch(Request $rq){
+        if(!empty($rq->txtSearch)){
+            $tukhoa = $rq->txtSearch;
+        }else {
+            echo "<script>
+             alert('Bạn chưa nhập từ khóa tìm kiếm.');
+             window.location = '".URL('/')."'
+             </script>";
+        }
+        return view('frontend.pages.search',compact('tukhoa'));
+    }
  
 }

@@ -144,7 +144,7 @@ body { margin-top: 140px; }
 .list-product { box-sizing: border-box; }
 .list-product .title-list { height: 37px; border-bottom: solid 1px; border-top: solid 1px; line-height: 35px; color: #000; text-transform: uppercase; font-size:18px; padding-left: 20px;  background-color: #f5f5f5; }
 .list-product .list-ct .product-item {
-  width: 24%; margin-top: 15px; min-height: 300px; float: left;padding: 5px;
+  width: 24%; margin-top: 15px;  float: left;padding: 5px; min-height: 311px;
 }
 .tab-pane .product-item {
   width: 20%; margin-top: 15px; min-height: 300px; float: left;padding: 5px;
@@ -169,7 +169,8 @@ body { margin-top: 140px; }
 .title-item { display: block;overflow: hidden; font-size: 13px; text-overflow: ellipsis;height: 36px; line-height: 18px;padding-left: 20px; }
 .list-product .price-sale { padding-left: 20px; }
 .list-product .price-sale .price-regular { color: #999; font-size: 11px; }
-.list-product .list-ct .product-item:hover { border: solid 1px #999; }
+
+.list-product .list-ct .product-item:hover { border: solid 1px #ccc; box-shadow: 0 0 2px #ccc; }
 .tab-pane .product-item:hover { border: solid 1px #999; }
 .single-bottom2 .product-item:hover{ border: solid 1px #999; }
 .phantrang { text-align:center; }

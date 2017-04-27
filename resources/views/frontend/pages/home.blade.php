@@ -12,7 +12,7 @@
   <div class="bl-quangcao col-md-12">
     <?php $slide = DB::table('ts_quangcao')->where('ViTri',1)->orderBy('id','DESC')->skip(0)->take(2)->get(); ?>
     @foreach($slide as $slide)
-    <img src="{!! asset('public/upload/quangcao/'.$slide->Anh) !!}" class="img-responsive" />
+    <a href="{{ isset($slide->url) ? $slide->url : '' }}"><img src="{!! asset('public/upload/quangcao/'.$slide->Anh) !!}" class="img-responsive" /></a>
     @endforeach
   </div>
 <!-- end quảng cáo -->
@@ -46,15 +46,20 @@
         ?>
         @if(count($product) >0 )
         @foreach($product as $item)
-          <div class="grid1_of_4">
+          <div class="grid1_of_4" style="">
             <div class="content_box"><a href="{!! URL('chi-tiet-san-pham/'.$item->id.'/'.$item->TenKhongDau) !!}">
-                 <img src="{!! asset('public/upload/product/'.$item->AnhChinh) !!}" class="img-responsive" width="230px;" />
+                 <div style="height: 230px;"><img src="{!! asset('public/upload/product/'.$item->AnhChinh) !!}" class="img-responsive" width="230px;" /></div>
                 </a>
                 <h4><a href="{!! URL('chi-tiet-san-pham/'.$item->id.'/'.$item->TenKhongDau) !!}"> {!! $item->TenSP !!}</a></h4>
-                <p>It is a long established fact that</p>
               <div class="grid_1 simpleCart_shelfItem">
               
-              <div class="item_add"><span class="item_price"><h6>{!! number_format($item->Gia,0,',','.') !!}&nbsp;đ</h6></span></div>
+              <div class="item_add"><span class="item_price"><h6>{!! number_format($item->Gia - floor($item->Gia*$item->GiamGia/100),0,',','.') !!}&nbsp;đ</h6></span>
+                <p class="price-sale">
+                  <span class="label label-warning">-{!! $item->GiamGia !!}%</span>
+                  <span class="price-regular" style="text-decoration: line-through;">{!! number_format($item->Gia,0,',','.') !!}&nbsp;đ</span>
+                </p>
+              </div>
+
               <div class="item_add"><span class="item_price"><a href="{{ url('mua-hang/'.$item->id.'/'.$item->TenKhongDau) }}">Mua ngay</a></span></div>
              </div>
             </div>

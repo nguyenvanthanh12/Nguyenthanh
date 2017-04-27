@@ -26,6 +26,7 @@ Route::group(['prefix' => '/', 'namespace' => 'FrontEnd'], function(){
 	Route::get('dang-nhap', 'RegisterController@getLogin')->name('getLogin');
 	Route::post('dang-nhap', 'RegisterController@postLogin')->name('postLogin');
 	Route::get('dang-xuat', 'RegisterController@getDangxuat')->name('getDangxuat');
+	Route::post('tim-kiem', 'FrontEndController@postSearch')->name('postSearch');
 });
 
 
@@ -49,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     	Route::get('/',function(){
     		return view('admin.blocks.thongke');
     	});
+    	Route::get('cai-dat', 'SettingController@getSetting1')->name('getSetting1');
     	Route::group(['prefix' => 'loai-san-pham'],function(){
     		Route::get('them', 'CateController@getCateAdd')->name('getCateAdd');
     		Route::post('them', 'CateController@postCateAdd')->name('postCateAdd');

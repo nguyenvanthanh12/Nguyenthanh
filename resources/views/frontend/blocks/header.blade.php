@@ -7,12 +7,13 @@
       </div>
       <!-- /////  search ///// -->
       <div class="search col-md-7"> 
-        <form class="navbar-form" action="" method="post">
+        <form class="navbar-form" action="tim-kiem" method="post" role="search">
           <div class="form-group">
             <input type="text" name="txtSearch" class="form-control txtForm" placeholder="">
+            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
           </div>
           <div class="form-group timkiem">
-            <button type="button" class="btn btn-warning">
+            <button type="submit" class="btn btn-warning">
               <span class="glyphicon glyphicon-search"></span>
             </button>
           </div>

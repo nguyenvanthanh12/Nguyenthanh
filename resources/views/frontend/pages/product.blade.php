@@ -50,27 +50,33 @@
             <h4>Thông số sản phẩm :</h4>
               <div class="parameter">
                 <ul style="list-style-image: url('{!! asset('public/img/icon_list.png') !!}');">
-                  <li>Chip: Intel Core i5 7300HQ (2.5GHz up to 3.5GHz)</li>
-                  <li>RAM: 8GB DDR4 2400MHz</li>
-                  <li>Ổ cứng: HDD + SSD (1TB + 128GB)</li>
-                  <li>Màn hình: 15.6" Full HD Anti-Glare with 94% NTSC</li>
-                  <li>Hệ điều hành: Free DOS</li>
+                  @if(count($paraDetail) > 0)
+                  @foreach($paraDetail as $val)
+                    <?php $para = DB::table('ts_thongso')->select('id','Ten')->where('id',$val->idTS)->first(); ?>
+                  <li>{{ $para->Ten }}: {{ $val->ctTS }}</li>
+                  @endforeach
+                  @endif
                 </ul>
               </div>
           </div>
           <div class="gio-hang">
-            <button class="btn btn-defaul"><i class="fa fa-shopping-cart fa-lg"></i>
-              <span class="text">Thêm vào giỏ hàng</span>
-            </button>
+            <a href="{{ url('mua-hang/'.$product_detail->id.'/'.$product_detail->TenKhongDau) }}" style="text-decoration: none;"><button class="btn btn-defaul"><i class="fa fa-shopping-cart fa-lg"></i>
+              <span class="text" style="text-decoration: none;">Thêm vào giỏ hàng</span>
+            </button></a>
           </div>
           <div class="event">
             <h4>Khuyến mại đi kèm :</h4>
             <ul>
+              @if(count($DetailEvent) > 0)
+              @foreach($DetailEvent as $value)
+              <?php $event = DB::table('ts_spkhuyenmai')->select('id','Ten','anh')->first(); ?>
               <li>
-                <img src="{!! asset('public/img/m100-gallery.png') !!}" alt="">
+                <img src="{!! asset('public/upload/khuyenmai/sanpham/'.$event->anh) !!}" alt="">
                 <span class="label label-success">Tặng kèm</span>
-                <p>Chuột không dây</p>
+                <p>{{ $event->Ten }}</p>
               </li>
+              @endforeach
+              @endif
             </ul>
           </div>
            </div>
@@ -78,7 +84,7 @@
                </div>
                 <div class="single-bottom1">
           <h6>Mô tả sản phẩm</h6>
-          <p class="prod-desc">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option</p>
+          <p class="prod-desc">{{ $product_detail->NoiDung }}</p>
         </div>
         @if(count($product_cate) >0)
         <div class="single-bottom2">

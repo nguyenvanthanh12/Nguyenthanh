@@ -13,7 +13,10 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="{!! url('thql_admin') !!}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="{!! url('thql_admin') !!}"><i class="fa fa-dashboard fa-fw"></i> Thống kê</a>
+            </li>
+            <li>
+                <a href="{{ route('getSetting1') }}"><i class="fa fa-gear fa-fw"></i> Cài đặt</a>
             </li>
             <li>
             <?php 
@@ -60,7 +63,7 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-cog fa-fw"></i> Thông số sản phẩm<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Thông số sản phẩm<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{!! route('getParaList') !!}">Danh sách</a>

@@ -51,7 +51,7 @@
         <div class="form-group">
             <label>Nội dung:</label>
             <textarea class="form-control" rows="3" id="NoiDung" name="NoiDung">{!! old('NoiDung') !!}</textarea>
-            <script type="text/javascript">CKEDITOR.replace('NoiDung');</script>
+            
         </div>
         <div class="form-group">
             <label>Bảo hành</label>
