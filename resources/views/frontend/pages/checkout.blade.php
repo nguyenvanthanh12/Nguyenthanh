@@ -94,6 +94,7 @@
 		</div>
 	</form>
 	@else
+	<div style="clear: both;"></div>
 		<h4>Bạn cần đăng nhập để mua sản phẩm</h4>
 	@endif
 	<div class="col-md-2"></div>

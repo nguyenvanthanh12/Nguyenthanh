@@ -8,11 +8,15 @@ use Auth;
 class LoginController extends Controller
 {
     public function getLogin(){
-    	if(!Auth::check()){
-    		return view('admin.login');	
+    	if(Auth::check() && Auth::user()->level == 1){
+    		return redirect('thql_admin');	
     	}
+        elseif(Auth::check()){
+            return view('admin.login');
+        }
     	else{
-    		return redirect('thql_admin');
+    		
+            return view('admin.login');
     	}
     }
 

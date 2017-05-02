@@ -16,7 +16,7 @@
                 <a href="{!! url('thql_admin') !!}"><i class="fa fa-dashboard fa-fw"></i> Thống kê</a>
             </li>
             <li>
-                <a href="{{ route('getSetting1') }}"><i class="fa fa-gear fa-fw"></i> Cài đặt</a>
+                <a href="{{ route('getSetting1') }}"><i class="fa fa-gear fa-fw"></i> Cài đặt<span class="fa arrow"></span></a>
             </li>
             <li>
             <?php 
@@ -26,7 +26,7 @@
                     @if(count($lienhe) > 0)
                     <span class="badge" style="background: red;">{{ count($lienhe) }}</span>
                     @endif
-                </a>
+                <span class="fa arrow"></span></a>
             </li>
             <li>
             <?php 
@@ -36,7 +36,7 @@
                     @if(count($order) > 0)
                     <span class="badge" style="background: red;">{{ count($order) }}</span>
                     @endif
-                </a>
+                <span class="fa arrow"></span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Loại sản phẩm<span class="fa arrow"></span></a>

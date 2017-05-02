@@ -1,6 +1,7 @@
 @extends('frontend.master')
 @section('description','Liên hệ')
 @section('content')
+<link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
 <!-- breadcrumb -->
 <div class="khoangcach"></div>
 <div class="khoangcach"></div>
@@ -45,6 +46,13 @@
       <label class="control-label col-sm-2">Nội dung :</label>
       <div class="col-sm-10">
         <textarea class="form-control" name="NoiDung"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2">Mã xác nhận :</label>
+      <div class="col-sm-10">
+        {!! captcha_image_html('ContactCaptcha') !!}
+        <input type="text" id="CaptchaCode" name="CaptchaCode">
       </div>
     </div>
     <div class="form-group">        

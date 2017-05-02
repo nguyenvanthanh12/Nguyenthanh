@@ -27,6 +27,9 @@ Route::group(['prefix' => '/', 'namespace' => 'FrontEnd'], function(){
 	Route::post('dang-nhap', 'RegisterController@postLogin')->name('postLogin');
 	Route::get('dang-xuat', 'RegisterController@getDangxuat')->name('getDangxuat');
 	Route::post('tim-kiem', 'FrontEndController@postSearch')->name('postSearch');
+    Route::get('gioi-thieu', 'FrontEndController@getIntroduce')->name('getIntroduce');
+    Route::get('khuyen-mai', 'FrontEndController@khuyenmai')->name('khuyenmai');
+    Route::get('khuyen-mai-chi-tiet/{id}', 'FrontEndController@khuyenmaichitiet')->name('khuyenmaichitiet')->where('id', '[0-9]+');
 });
 
 
@@ -46,79 +49,85 @@ Route::get('logout', 'LoginController@getLogout')->name('getLogout');
 
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::group(['prefix' => 'thql_admin', 'namespace' => 'Admin'], function(){
-    	Route::get('/',function(){
-    		return view('admin.blocks.thongke');
-    	});
-    	Route::get('cai-dat', 'SettingController@getSetting1')->name('getSetting1');
-    	Route::group(['prefix' => 'loai-san-pham'],function(){
-    		Route::get('them', 'CateController@getCateAdd')->name('getCateAdd');
-    		Route::post('them', 'CateController@postCateAdd')->name('postCateAdd');
-    		route::get('danhsach', 'CateController@getCateList')->name('getCateList');
-    		Route::get('xoa/{id}', 'CateController@getCateDelete')->name('getCateDelete')->where('id', '[0-9]+');
-    		route::get('sua/{id}', 'CateController@getCateEdit')->name('getCateEdit')->where('id', '[0-9]+');
-    		Route::post('sua/{id}', 'CateController@postCateEdit')->name('postCateEdit')->where('id', '[0-9]+');
-    	});
+   Route::group(['prefix' => 'thql_admin', 'namespace' => 'Admin'], function(){
+       Route::get('/',function(){
+            $user = \Auth::user();
+            if($user->level == 1){
+                return view('admin.blocks.thongke');
+            }else{
+                return redirect()->route('getLogin');
+            }    
+       });
+       Route::get('cai-dat', 'SettingController@getSetting1')->name('getSetting1');
+       Route::post('cai-dat', 'SettingController@postSetting')->name('postSetting');
+       Route::group(['prefix' => 'loai-san-pham'],function(){
+           Route::get('them', 'CateController@getCateAdd')->name('getCateAdd');
+           Route::post('them', 'CateController@postCateAdd')->name('postCateAdd');
+           route::get('danhsach', 'CateController@getCateList')->name('getCateList');
+           Route::get('xoa/{id}', 'CateController@getCateDelete')->name('getCateDelete')->where('id', '[0-9]+');
+           route::get('sua/{id}', 'CateController@getCateEdit')->name('getCateEdit')->where('id', '[0-9]+');
+           Route::post('sua/{id}', 'CateController@postCateEdit')->name('postCateEdit')->where('id', '[0-9]+');
+       });
 
-    	Route::group(['prefix' => 'su-kien-khuyen-mai'],function(){
-    		Route::get('danh-sach', 'EventController@getEventList')->name('getEventList');
-    		Route::get('them', 'EventController@getEventAdd')->name('getEventAdd');
-    		Route::post('them', 'EventController@postEventAdd')->name('postEventAdd');
-    		Route::get('xoa/{id}', 'EventController@getEventDelete')->name('getEventDelete')->where('id', '[0-9]+');
-    		route::get('sua/{id}', 'EventController@getEventEdit')->name('getEventEdit')->where('id', '[0-9]+');
-    		Route::post('sua/{id}', 'EventController@postEventEdit')->name('postEventEdit')->where('id', '[0-9]+');
-    	});
+       Route::group(['prefix' => 'su-kien-khuyen-mai'],function(){
+           Route::get('danh-sach', 'EventController@getEventList')->name('getEventList');
+           Route::get('them', 'EventController@getEventAdd')->name('getEventAdd');
+           Route::post('them', 'EventController@postEventAdd')->name('postEventAdd');
+           Route::get('xoa/{id}', 'EventController@getEventDelete')->name('getEventDelete')->where('id', '[0-9]+');
+           route::get('sua/{id}', 'EventController@getEventEdit')->name('getEventEdit')->where('id', '[0-9]+');
+           Route::post('sua/{id}', 'EventController@postEventEdit')->name('postEventEdit')->where('id', '[0-9]+');
+       });
 
-    	Route::group(['prefix' => 'san-pham-khuyen-mai'],function(){
-    		Route::get('danhsach', 'Event1Controll@getEvent1List')->name('getEvent1List');
-    		Route::get('them', 'Event1Controll@getEvent1Add')->name('getEvent1Add');
-    		Route::post('them', 'Event1Controll@postEvent1Add')->name('postEvent1Add');
-    		Route::get('xoa/{id}', 'Event1Controll@getEvent1Delete')->name('getEvent1Delete')->where('id', '[0-9]+');
-    		route::get('sua/{id}', 'Event1Controll@getEvent1Edit')->name('getEvent1Edit')->where('id', '[0-9]+');
-    		Route::post('sua/{id}', 'Event1Controll@postEvent1Edit')->name('postEvent1Edit')->where('id', '[0-9]+');
-    	});
-    	Route::group(['prefix' => 'tai-khoan'],function(){
-    		Route::get('danhsach', 'UserController@getUserList')->name('getUserList');
-    		Route::get('them', 'UserController@getUserAdd')->name('getUserAdd');
-    		Route::post('them', 'UserController@postUserAdd')->name('postUserAdd');
-    		Route::get('xoa/{id}', 'UserController@getUserDelete')->name('getUserDelete')->where('id', '[0-9]+');
-    		route::get('sua/{id}', 'UserController@getUserEdit')->name('getUserEdit')->where('id', '[0-9]+');
-    		Route::post('sua/{id}', 'UserController@postUserEdit')->name('postUserEdit')->where('id', '[0-9]+');
-    	});
-    	Route::group(['prefix' => 'san-pham'],function(){
-    		Route::get('danhsach', 'productController@getProductList')->name('getProductList');
-    		Route::get('them', 'productController@getProductAdd')->name('getProductAdd');
-    		Route::post('them', 'productController@postProductAdd')->name('postProductAdd');
-    		Route::get('xoa/{id}', 'productController@getProductDel')->name('getProductDel')->where('id', '[0-9]+');
-    		route::get('sua/{id}', 'productController@getProductEdit')->name('getProductEdit')->where('id', '[0-9]+');
-    		Route::post('sua/{id}', 'productController@postProductEdit')->name('postProductEdit')->where('id', '[0-9]+');
-    		Route::get('delImg/{id}', 'productController@getDelImg')->name('getDelImg');
-    	});
-    	Route::group(['prefix' => 'thong-so'],function(){
-    		Route::get('themthongso', 'parameterController@getparaadd')->name('getparaadd');
-    		Route::post('themthongso', 'parameterController@postparaadd')->name('postparaadd');
-    		Route::get('danhsach', 'parameterController@getParaList')->name('getParaList');
-    		Route::get('xoa/{id}', 'parameterController@getParaDel')->name('getParaDel')->where('id', '[0-9]+');
-    		route::get('sua/{id}', 'parameterController@getParaEdit')->name('getParaEdit')->where('id', '[0-9]+');
-    		Route::post('sua/{id}', 'parameterController@postParaEdit')->name('postParaEdit')->where('id', '[0-9]+');
-    	});
-    	Route::group(['prefix' => 'lien-he'],function(){
-    		Route::get('danhsach', 'ContactController@getContactList')->name('getContactList');
-    		Route::get('setting/{id}', 'ContactController@getSetting')->name('getSetting')->where('id', '[0-9]+');
-    	});
-    	Route::group(['prefix' => 'don-hang'],function(){
-    		Route::get('danhsach', 'OrderController@getListOrder')->name('getListOrder');
-    		Route::get('order-setting/{id}', 'OrderController@getOrderSt')->name('getOrderSt')->where('id', '[0-9]+');
-    		Route::get('chi-tiet-don-hang/{id}', 'OrderController@getDetailOrder')->name('getDetailOrder')->where('id', '[0-9]+');
-    	});
+       Route::group(['prefix' => 'san-pham-khuyen-mai'],function(){
+           Route::get('danhsach', 'Event1Controll@getEvent1List')->name('getEvent1List');
+           Route::get('them', 'Event1Controll@getEvent1Add')->name('getEvent1Add');
+           Route::post('them', 'Event1Controll@postEvent1Add')->name('postEvent1Add');
+           Route::get('xoa/{id}', 'Event1Controll@getEvent1Delete')->name('getEvent1Delete')->where('id', '[0-9]+');
+           route::get('sua/{id}', 'Event1Controll@getEvent1Edit')->name('getEvent1Edit')->where('id', '[0-9]+');
+           Route::post('sua/{id}', 'Event1Controll@postEvent1Edit')->name('postEvent1Edit')->where('id', '[0-9]+');
+       });
+       Route::group(['prefix' => 'tai-khoan'],function(){
+           Route::get('danhsach', 'UserController@getUserList')->name('getUserList');
+           Route::get('them', 'UserController@getUserAdd')->name('getUserAdd');
+           Route::post('them', 'UserController@postUserAdd')->name('postUserAdd');
+           Route::get('xoa/{id}', 'UserController@getUserDelete')->name('getUserDelete')->where('id', '[0-9]+');
+           route::get('sua/{id}', 'UserController@getUserEdit')->name('getUserEdit')->where('id', '[0-9]+');
+           Route::post('sua/{id}', 'UserController@postUserEdit')->name('postUserEdit')->where('id', '[0-9]+');
+       });
+       Route::group(['prefix' => 'san-pham'],function(){
+           Route::get('danhsach', 'productController@getProductList')->name('getProductList');
+           Route::get('them', 'productController@getProductAdd')->name('getProductAdd');
+           Route::post('them', 'productController@postProductAdd')->name('postProductAdd');
+           Route::get('xoa/{id}', 'productController@getProductDel')->name('getProductDel')->where('id', '[0-9]+');
+           route::get('sua/{id}', 'productController@getProductEdit')->name('getProductEdit')->where('id', '[0-9]+');
+           Route::post('sua/{id}', 'productController@postProductEdit')->name('postProductEdit')->where('id', '[0-9]+');
+           Route::get('delImg/{id}', 'productController@getDelImg')->name('getDelImg');
+       });
+       Route::group(['prefix' => 'thong-so'],function(){
+           Route::get('themthongso', 'parameterController@getparaadd')->name('getparaadd');
+           Route::post('themthongso', 'parameterController@postparaadd')->name('postparaadd');
+           Route::get('danhsach', 'parameterController@getParaList')->name('getParaList');
+           Route::get('xoa/{id}', 'parameterController@getParaDel')->name('getParaDel')->where('id', '[0-9]+');
+           route::get('sua/{id}', 'parameterController@getParaEdit')->name('getParaEdit')->where('id', '[0-9]+');
+           Route::post('sua/{id}', 'parameterController@postParaEdit')->name('postParaEdit')->where('id', '[0-9]+');
+       });
+       Route::group(['prefix' => 'lien-he'],function(){
+           Route::get('danhsach', 'ContactController@getContactList')->name('getContactList');
+           Route::get('setting/{id}', 'ContactController@getSetting')->name('getSetting')->where('id', '[0-9]+');
+       });
+       Route::group(['prefix' => 'don-hang'],function(){
+           Route::get('danhsach', 'OrderController@getListOrder')->name('getListOrder');
+           Route::get('order-setting/{id}', 'OrderController@getOrderSt')->name('getOrderSt')->where('id', '[0-9]+');
+           Route::get('chi-tiet-don-hang/{id}', 'OrderController@getDetailOrder')->name('getDetailOrder')->where('id', '[0-9]+');
+       });
 
-    	Route::group(['prefix' => 'quang-cao'],function(){
-    		Route::get('danh-sach', 'AdvertisementController@getAdvList')->name('getAdvList');
-    		Route::get('them', 'AdvertisementController@getAdvAdd')->name('getAdvAdd');
-    		Route::post('them', 'AdvertisementController@postAdvAdd')->name('postAdvAdd');
-    		Route::get('xoa/{id}', 'AdvertisementController@getAdvDel')->name('getAdvDel')->where('id', '[0-9]+');
-    		route::get('sua/{id}', 'AdvertisementController@getAdvEdit')->name('getAdvEdit')->where('id', '[0-9]+');
-    		Route::post('sua/{id}', 'AdvertisementController@postAdvEdit')->name('postAdvEdit')->where('id', '[0-9]+');
-    	});
-    });
+       Route::group(['prefix' => 'quang-cao'],function(){
+           Route::get('danh-sach', 'AdvertisementController@getAdvList')->name('getAdvList');
+           Route::get('them', 'AdvertisementController@getAdvAdd')->name('getAdvAdd');
+           Route::post('them', 'AdvertisementController@postAdvAdd')->name('postAdvAdd');
+           Route::get('xoa/{id}', 'AdvertisementController@getAdvDel')->name('getAdvDel')->where('id', '[0-9]+');
+           route::get('sua/{id}', 'AdvertisementController@getAdvEdit')->name('getAdvEdit')->where('id', '[0-9]+');
+           Route::post('sua/{id}', 'AdvertisementController@postAdvEdit')->name('postAdvEdit')->where('id', '[0-9]+');
+       });
+    }); 
 });

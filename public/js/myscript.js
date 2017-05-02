@@ -41,3 +41,26 @@ $(document).ready(function(){
 		var idTin
 	});
 });*/
+$(document).ready(function () {
+
+    $(function(){
+		var color_footer = $('.colorpickerplus-embed .colorpickerplus-container');
+        color_footer.colorpickerembed();
+        color_footer.on('changeColor', function(e,color1){
+			if(color1==null)
+			$('#color_footer').val('transparent').css('background-color', '#fff');//tranparent
+			else
+        	$('#color_footer').val(color1).css('background-color', color1);
+        });
+		
+		var demo1 = $('#demo1');
+        demo1.colorpickerplus();
+        demo1.on('changeColor', function(e,color){
+			if(color==null)
+			$(this).val('transparent').css('background-color', '#fff');//tranparent
+			else{
+        	$(this).val(color).css('background-color', color);
+        }
+        });
+    });
+});

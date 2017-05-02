@@ -53,13 +53,16 @@ class FrontEndController extends Controller
     public function postLienhe(Request $Request){
         $this->validate($Request,
             [
-                'HoTen'  =>  'required',
-                'email' =>  'required|email'
+                'HoTen'       =>  'required',
+                'email'       =>  'required|email',
+                'CaptchaCode' => 'required|valid_captcha'
             ],
             [
-                'HoTen.required'  =>  'Họ tên bắt buộc phải nhập !',
-                'email.required' =>  'Địa chỉ mail bắt buộc phải phập',
-                'email.email'   =>  'Địa chỉ mail bạn nhập không tồn tại !'
+                'HoTen.required'            =>  'Họ tên bắt buộc phải nhập !',
+                'email.required'            =>  'Địa chỉ mail bắt buộc phải phập',
+                'email.email'               =>  'Địa chỉ mail bạn nhập không tồn tại !',
+                'CaptchaCode.required'      =>  'Bạn chưa nhập mã kiểm tra',
+                'CaptchaCode.valid_captcha' =>  'Mã kiểm tra chưa chính xác'
             ]
         );
         $data = ['HoTen' => $Request->HoTen,'email' => $Request->email,'TieuDe' => $Request->TieuDe,'NoiDung' => $Request->NoiDung];
@@ -136,5 +139,17 @@ class FrontEndController extends Controller
         }
         return view('frontend.pages.search',compact('tukhoa'));
     }
- 
+
+    public function getIntroduce(){
+        return view('frontend.pages.introduce');
+    }
+    
+    public function khuyenmai(){
+        return view('frontend.pages.event');
+    }
+
+    public function khuyenmaichitiet($id){
+        $data = DB::table('ts_chuongtrinhkhuyenmai')->where('id',$id)->first();
+        return view('frontend.pages.eventdetail',compact('data'));
+    }
 }

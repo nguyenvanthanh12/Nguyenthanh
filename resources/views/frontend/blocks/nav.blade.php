@@ -57,21 +57,23 @@
       
       <div class="col-md-6 navbar-collapse collapse" id="menu">
         <ul class="nav navbar-nav">
-          <li><a href="">Giới thiệu</a></li>
+          <li><a href="{!! route('getIntroduce') !!}">Giới thiệu</a></li>
           <li><a href="{!! url('lien-he') !!}">Thông tin liên hệ</a></li>
-          <li><a href="">Khuyến mại</a></li>
-          <li><a href="">Chăm sóc khách hàng</a></li>
+          <li><a href="{!! url('khuyen-mai') !!}">Khuyến mại</a></li>
         </ul>
         
       </div>
       @if(Auth::check())
-      <div class="col-md-3" style="color: #fff; padding-top: 15px; padding-left: 40px;">
+      <div class="col-md-3" style="color: #fff; padding-top: 15px; padding-left: 40px; float: right;">
         <span>Xin chào: </span><small><i style="color: red;">{!! Auth::user()->HoTen !!} - <a href="{!! url('dang-xuat') !!}" style="color: #fff;">Thoát</a></i></small>
       </div>
+
       @else
-      <div class="col-md-3 login" style="color: #fff; padding-top: 5px;">
+      <div class="col-md-3 login" style="color: #fff; padding-top: 5px; float: right;">
         <a href="{!! url('dang-ky') !!}">Đăng ký</a> |
         <a href="{!! url('dang-nhap') !!}">Đăng nhập</a>
       </div>
+      
       @endif
+      <div style="clear: both;"></div>
     </div>

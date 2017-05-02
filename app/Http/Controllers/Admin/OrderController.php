@@ -20,7 +20,7 @@ class OrderController extends Controller
 		$stOrder->TrangThai = 1;
 		$stOrder->save();
 
-		return redirect()->route('getListOrder');
+		return redirect()->back();
     }
 
     public function getDetailOrder($id){

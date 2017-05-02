@@ -3,7 +3,7 @@
 /* Them mau moi cho navigation */
 
 .navbar-mynav {
-  background-color: rgb(24, 53, 68);
+  
   border-color: #fff;
 }
 .navbar-mynav .navbar-brand {
@@ -119,7 +119,7 @@ body { margin-top: 140px; }
 }
 .khoangcach { height: 15px; }
 .wrapper { min-height: 400px; }
-.footer { background: #f7f7f7; box-sizing: border-box; margin-top: 60px; padding:40px 0 70px 0; }
+.footer {  box-sizing: border-box; margin-top: 60px; padding:40px 0 70px 0; }
 .footer div ul { list-style-type: none; }
 .footer div h4 { text-transform: uppercase; }
 .footer div ul a { color: rgb(51, 51, 51); }
@@ -353,3 +353,5 @@ padding:0 20px
 div.login a {
   display: block; text-decoration: none;color: #fff;
 }
+
+div.introduce {  }

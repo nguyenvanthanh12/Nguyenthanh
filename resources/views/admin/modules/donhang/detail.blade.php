@@ -20,6 +20,13 @@
 			<span>Ghi chú: {!! $orderDetail['GhiChu'] !!}</span>
 		</div>
 		<div>
+			<span>Trạng thái:  @if($orderDetail['TrangThai'] == 0)
+                <a href="{{ route('getOrderSt',$orderDetail['id']) }}" type="button" id="xem"><input type="checkbox" ></a><span style="color: red;"> Chưa giao</span>
+                @else
+                <input type="checkbox" checked="" disabled><span style="color: blue;"> Đã giao</span>
+                @endif</span>
+		</div>
+		<div>
 			<table class="table">
 				<thead>
 					<tr>

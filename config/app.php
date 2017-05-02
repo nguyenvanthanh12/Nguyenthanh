@@ -170,6 +170,8 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        LaravelCaptcha\Providers\LaravelCaptchaServiceProvider::class,// Thêm dòng này vào
+        GoogleMaps\ServiceProvider\GoogleMapsServiceProvider::class,
         
 
         /*
@@ -236,6 +238,7 @@ return [
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+        'GoogleMaps' => GoogleMaps\Facade\GoogleMapsFacade::class,
 
     ],
 

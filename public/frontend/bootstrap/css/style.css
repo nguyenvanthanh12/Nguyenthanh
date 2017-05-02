@@ -4,6 +4,22 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 */
+.header-intro {
+	font-weight: bold;
+}
+.cate-number { padding: 20px; }
+.cate-number a { color: blue; font-weight: bold; margin: 10px;}
+div.ct-kuyenmai { width: 800px; margin: auto; }
+div.content-event .img-ct { width: 100%; text-align: center; margin: 15px;}
+@media (min-width: 1200px){
+	.ct-kuyenmai {
+    width: 800px;
+    margin: auto;
+}
+}
+div.search form,div#header-car { padding-top: 10px; }
+
+
 h4, h5, h6,
 h1, h2, h3 {margin-top: 0;}
 ul, ol {margin: 0;}

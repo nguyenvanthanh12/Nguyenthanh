@@ -8,10 +8,15 @@
 
     <!-- Select 2 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
     <link href="{!! asset('public/css/select2.min.css') !!}" rel="stylesheet">
 
     <!-- Bootstrap Core CSS -->
     <link href="{!! asset('public/ts_admin/bower_components/bootstrap/dist/css/bootstrap.min.css') !!}" rel="stylesheet">
+
+    <!-- pick color -->
+    <link href="{!! asset('public/ts_admin/pick_color/dist/css/bootstrap-colorpicker.min.css') !!}" rel="stylesheet">
+    <link href="{!! asset('public/ts_admin/pick_color/dist/css/bootstrap-colorpicker-plus.css') !!}" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="{!! asset('public/ts_admin/bower_components/metisMenu/dist/metisMenu.min.css') !!}" rel="stylesheet">
@@ -24,6 +29,9 @@
 
     <!-- DataTables CSS -->
     <link href="{!! asset('public/ts_admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') !!}" rel="stylesheet">
+
+    <!-- pickcolor -->
+    <link rel="stylesheet" href="http://hocwebgiare.com/thiet_ke_web_chuan_demo/bootstrap_pickcolor/css/pick-a-color-1.2.3.min.css">
 
     <!-- DataTables Responsive CSS -->
     <link href="{!! asset('public/ts_admin/bower_components/datatables-responsive/css/dataTables.responsive.css') !!}" rel="stylesheet">
@@ -55,18 +63,10 @@
             <ul class="nav navbar-top-links navbar-right">
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    <a   href="{!! url('logout') !!}">
+                        <i class="fa fa-user fa-fw"></i>  Đăng xuất</i>
                     </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Hồ sơ</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Cài đặt</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="{!! url('logout') !!}"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
-                        </li>
-                    </ul>
+                    
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
@@ -112,8 +112,16 @@
     <!-- jQuery -->
     <script src="{!! asset('public/ts_admin/bower_components/jquery/dist/jquery.min.js') !!}"></script>
 
+    <!-- select color -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://hocwebgiare.com/thiet_ke_web_chuan_demo/bootstrap_pickcolor/js/pick-a-color-1.2.3.min.js"></script><script src="http://hocwebgiare.com/thiet_ke_web_chuan_demo/bootstrap_pickcolor/js/tinycolor-0.9.15.min.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="{!! asset('public/ts_admin/bower_components/bootstrap/dist/js/bootstrap.min.js') !!}"></script>
+
+    <!-- pick color -->
+    <script src="{!! asset('public/ts_admin/pick_color/dist/js/bootstrap-colorpicker.min.js') !!}"></script>
+    <script src="{!! asset('public/ts_admin/pick_color/dist/js/bootstrap-colorpicker-plus.js') !!}"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{!! asset('public/ts_admin/bower_components/metisMenu/dist/metisMenu.min.js') !!}"></script>

@@ -1,9 +1,10 @@
-<div class="header navbar navbar-mynav navbar-fixed-top">  <!--  navigation -->
+<?php $setting = DB::table('ts_caidat')->where('id',5)->first(); ?>
+<div class="header navbar navbar-mynav navbar-fixed-top" style="background-color: {!! $setting->color_top !!};">  <!--  navigation -->
   <div class="container">
     <div class="banner row">  <!-- Banner -->
 
       <div class="logo col-md-2">
-        <a href="{!! url('/') !!}"><img src="{!! asset('public/frontend/img/logo.png') !!}" height="50px"></a>
+        <a href="{!! url('/') !!}"><img src="{!! asset('public/upload/'.$setting->logo) !!}" height="50px"></a>
       </div>
       <!-- /////  search ///// -->
       <div class="search col-md-7"> 
@@ -12,7 +13,7 @@
             <input type="text" name="txtSearch" class="form-control txtForm" placeholder="">
             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
           </div>
-          <div class="form-group timkiem">
+          <div class="form-group timkiem" >
             <button type="submit" class="btn btn-warning">
               <span class="glyphicon glyphicon-search"></span>
             </button>
@@ -20,7 +21,7 @@
         </form>
       </div>  <!-- end search -->
       <!-- ***** giỏ hàng và thành viện ***** -->
-      <div class="giohang col-md-3">
+      <div class="giohang col-md-3" >
         <div id="header-car">
           <a href="{!! url('gio-hang') !!}" title="">
             <i class="fa fa-shopping-cart fa-2x"></i> 

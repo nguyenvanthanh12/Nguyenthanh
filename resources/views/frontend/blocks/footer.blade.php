@@ -1,8 +1,9 @@
- <div class="footer">
+ <?php $st = DB::table('ts_caidat')->where('id',5)->first(); ?>
+ <div class="footer" style="background: {{ $st->color_footer }};">
    <div class="container">
      <div class="col-md-3">
        <h4>HỖ TRỢ KHÁCH HÀNG</h4>
-       <p>Hotline: 1900-1001</p>
+       <p>Hotline: {{ $st->sdt }}</p>
        <ul>
          <li><small>(1000đ/phút, 8-21h cả T7, CN)</small></li>
          <li><a href=""><small>Các câu hỏi thường gặp</small></a></li>
@@ -37,17 +38,17 @@
      <div class="col-md-3">
        <h4>Phương thức thanh toán</h4>
        <div class="row">
-         <a href="" class="col-md-6"><img src="public/img/donga.png"></a>
-         <a href="" class="col-md-6"><img src="public/img/vietcombank.png"></a>
+         <a href="" class="col-md-6"><img src="{{ asset('public/frontend/img/donga.png') }}"></a>
+         <a href="" class="col-md-6"><img src="{{ asset('public/frontend/img/vietcombank.png') }}"></a>
        </div>
        <div class="row">
-         <a href="" class="col-md-6"><img src="public/img/techcombank.png"></a>
-         <a href="" class="col-md-6"><img src="public/img/sacobank.png"></a>
+         <a href="" class="col-md-6"><img src="{{ asset('public/frontend/img/techcombank.png') }}"></a>
+         <a href="" class="col-md-6"><img src="{{ asset('public/frontend/img/sacobank.png') }}"></a>
          
        </div>
        <div class="row">
-         <a href="" class="col-md-6"><img src="public/img/vtbank.png"></a>
-         <a href="" class="col-md-6"><img src="public/img/vpbank.png"></a>
+         <a href="" class="col-md-6"><img src="{{ asset('public/frontend/img/vtbank.png') }}"></a>
+         <a href="" class="col-md-6"><img src="{{ asset('public/frontend/img/vpbank.png') }}"></a>
        </div>
      </div>
    </div>

@@ -13,3 +13,54 @@
 *{margin: 0; padding: 0;}
 
 div.alert ul { margin-left: 10px; }
+.color-fill-icon{display:inline-block;width:16px;height:16px;border:1px solid #000;background-color:#fff;margin: 2px;}
+.dropdown-color-fill-icon{position:relative;float:left;margin-left:0;margin-right: 0}
+.well .markup{
+	background: #fff;
+	color: #777;
+	position: relative;
+	padding: 45px 15px 15px;
+	margin: 15px 0 0 0;
+	background-color: #fff;
+	border-radius: 0 0 4px 4px;
+	box-shadow: none;
+}
+
+.well .markup::after{
+	content: "Example";
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #bbb;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+@-webkit-keyframes my {
+	 0% { color: #a64d79; } 
+	 50% { color: blue;  } 
+	 100% { color: red;  } 
+ }
+ @-moz-keyframes my { 
+	 0% { color: #a64d79;  } 
+	 50% { color: blue;  }
+	 100% { color: red;  } 
+ }
+ @-o-keyframes my { 
+	 0% { color: #a64d79; } 
+	 50% { color: blue; } 
+	 100% { color: red;  } 
+ }
+ @keyframes my { 
+	 0% { color: #a64d79;  } 
+	 50% { color: blue;  }
+	 100% { color: red;  } 
+ } 
+ .animation {
+     font-weight:bold;
+	 -webkit-animation: my 1000ms infinite;
+	 -moz-animation: my 1000ms infinite; 
+	 -o-animation: my 1000ms infinite; 
+	 animation: my 1000ms infinite;
+}

@@ -9,6 +9,7 @@ use App\Models\User;
 use Auth,dateTime;
 class UserController extends Controller
 {
+    
     public function getUserList() {
     	$data = User::select('id','username','email','password','HoTen','DiaChi','SDT','level')->orderBy('id','DESC')->get()->toArray();
     	return view('admin.modules.taikhoan.list',['data' => $data]);
